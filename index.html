@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerdTrace | Track Every Step</title>
+  <meta name="description" content="HerdTrace is a smart livestock tracking platform for rural farmers, co-ops, and commercial livestock managers." />
+  <meta name="keywords" content="HerdTrace, Livestock Tracking, Smart Farming, Cattle GPS, Sheep Monitoring, Goat Tracker, Rural Technology" />
+  <meta name="author" content="HerdTrace" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" xintegrity="sha512-yFjLbKKfhqqzmlOpZGEmkn7iyIphnqrx6gzlnrzZotT7cYyRmQzYHxjVIMhkJJ0NeJka9xxa1jIBklGtK7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HerdTrace",
+    "url": "https://herdtrace.co.za",
+    "logo": "https://herdtrace.co.za/images/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+27-000-0000",
+      "contactType": "Customer Service"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61573172663345",
+      "https://www.linkedin.com/company/herdtrace/posts/?feedView=all"
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .hero-slide-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 1;
+    }
+    .hero-slide-image.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    .hero-overlay {
+      position: relative;
+      z-index: 3;
+    }
+
+    .faq-item {
+      background-color: white;
+      color: #2B5669;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+      border: 2px solid transparent;
+    }
+    .faq-item:hover {
+        background-color: #f8f8f8;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .faq-item.active {
+        border-color: #f39c12;
+        background-color: #e8f0f3;
+    }
+    .faq-toggle {
+      padding: 20px 30px;
+      font-weight: bold;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: none;
+      color: #2B5669;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+    .faq-toggle:hover {
+      background-color: #f0f0f0;
+      color: #f39c12;
+    }
+    .faq-toggle svg {
+      transition: transform 0.3s ease-in-out;
+    }
+    .faq-toggle[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+    .faq-content {
+      padding: 0px 30px;
+      color: #555;
+      font-size: 1.1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+    }
+    .faq-content.open {
+      max-height: 500px;
+      padding: 10px 30px 20px;
+    }
+
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    }
+    .animate-on-scroll.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    }
+    .animate-stagger.animate-in > *:nth-child(1) { transition-delay: 0.1s; }
+    .animate-stagger.animate-in > *:nth-child(2) { transition-delay: 0.2s; }
+    .animate-stagger.animate-in > *:nth-child(3) { transition-delay: 0.3s; }
+    .animate-stagger.animate-in > *:nth-child(4) { transition-delay: 0.4s; }
+
+    .partner-logo {
+        height: 80px;
+    }
+
+    .card-hover-effect {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+    .card-hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        background-color: #e8f0f3;
+        border-color: #f39c12;
+    }
+
+    #our-story .card-hover-effect h4,
+    #features .card-hover-effect h4 {
+      transition: color 0.3s ease-in-out;
+    }
+
+    #our-story .card-hover-effect p,
+    #features .card-hover-effect p {
+      transition: color 0.3s ease-in-out;
+    }
+
+    #our-story .card-hover-effect:hover h4,
+    #features .card-hover-effect:hover h4 {
+        color: #2B5669;
+    }
+
+    #our-story .card-hover-effect:hover p,
+    #features .card-hover-effect:hover p {
+        color: #4B5563;
+    }
+
+    .partner-card-flip {
+        perspective: 1000px;
+        width: 100%;
+        height: 200px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+    .partner-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s ease-in-out;
+        transform-style: preserve-3d;
+        border-radius: 12px;
+    }
+    .partner-card-flip:hover .partner-card-inner {
+        transform: rotateY(180deg);
+    }
+    .partner-card-front, .partner-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .partner-card-front {
+        background-color: #f8f8f8;
+        color: #2B5669;
+    }
+    .partner-card-back {
+        background-color: #2B5669;
+        color: white;
+        transform: rotateY(180deg);
+    }
+    .partner-card-back p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .contact-slide-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 1;
+    }
+    .contact-slide-image.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+    .modal-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+    .modal-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        width: 90%;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        position: relative;
+        color: #2B5669;
+    }
+    .modal-overlay.open .modal-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .modal-close-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #2B5669;
+    }
+    .modal-member-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 1rem;
+        border: 4px solid #f39c12;
+    }
+
+    .tool-card-container {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tool-image-wrapper {
+        height: 50%;
+        width: 100%;
+        position: relative;
+    }
+
+    .tool-image-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .tool-text-content {
+        height: 50%;
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .square-aspect-ratio {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+      overflow: hidden;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .square-aspect-ratio > .contact-slide-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-content-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .form-content-wrapper input,
+    .form-content-wrapper button {
+        width: 90%;
+    }
+
+    .contact-slide-image {
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .section-separator {
+      height: 4px;
+      background-color: #2B5669;
+      border-radius: 2px;
+      margin: 3rem auto;
+      max-width: 80%;
+      transform: scaleX(0);
+      opacity: 0;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-[#FAFEE6] text-gray-800">
+
+  <header class="bg-[#2B5669] text-white fixed w-full z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#home" class="flex items-center space-x-4">
+        <img src="images/logo.png" alt="HerdTrace Logo" class="h-14 md:h-16">
+        <span class="text-3xl md:text-4xl font-semibold">HerdTrace</span>
+      </a>
+      <nav class="space-x-6 hidden md:block">
+        <a href="#home" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
+        <a href="#about-intro" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
+        <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
+        <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
+        <a href="#contact" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Contact</a>
+      </nav>
+      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Open mobile menu">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-[#2B5669] bg-opacity-95 z-40 flex flex-col items-center justify-center space-y-8 text-3xl" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <button id="close-mobile-menu" class="absolute top-4 right-4 text-white focus:outline-none" aria-label="Close mobile menu">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      <a href="#home" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+      <a href="#about-intro" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
+      <a href="#features" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
+      <a href="#pricing" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Pricing</a>
+      <a href="#contact" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+    </div>
+  </header>
+
+  <section class="h-screen relative pt-20 overflow-hidden flex flex-col items-center justify-center text-center text-white" id="home">
+    <img src="images/hero_image.jpg" alt="Livestock on a farm" class="hero-slide-image active">
+    <img src="images/goats.jpg" alt="Goats grazing" class="hero-slide-image">
+    <img src="images/cattle.jpg" alt="Cattle in a field" class="hero-slide-image">
+
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white hero-overlay">
+      <h1 class="text-5xl md:text-7xl font-bold uppercase drop-shadow-lg animate-on-scroll">HERDTRACE</h1>
+      <p class="text-xl md:text-3xl mt-4 drop-shadow-md animate-on-scroll" style="transition-delay: 0.2s;">Track every step. Secure every herd.</p>
+      <div class="mt-8 space-y-3 animate-on-scroll" style="transition-delay: 0.4s;">
+        <p class="text-lg md:text-xl">Get started with HerdTrace and secure your livestock.</p>
+        <p class="text-lg md:text-xl">Livestock Tracking Made Easy</p>
+        <p class="text-lg md:text-xl">Ensure the safety of your herd at all times.</p>
+      </div>
+      <button class="mt-10 bg-[#f39c12] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out animate-on-scroll" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.4); transition-delay: 0.6s;" aria-label="Learn more about HerdTrace">
+        Learn More
+      </button>
+    </div>
+  </section>
+
+  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="about-intro">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-8">Welcome to HerdTrace</h2>
+      <p class="text-xl leading-relaxed mb-8">Transforming livestock management with technology</p>
+      <div class="max-w-3xl mx-auto">
+        <p class="mb-6 text-lg leading-relaxed">HerdTrace is a smart livestock tracking system designed to help farmers protect and manage their animals with ease.</p>
+        <p class="mb-6 text-lg leading-relaxed">We offer a reliable solution to monitor livestock location and health in real time. Our mobile app provides farmers with updates and alerts, making it easier to track animals, prevent theft, and record important health data.</p>
+        <p class="mb-6 text-lg leading-relaxed">Whether you’re a commercial or small-scale farmer, HerdTrace is built to be simple, accessible, and effective. For farmers who do not own smartphones, we offer SMS notifications to ensure everyone stays informed and connected.</p>
+        <p class="text-lg leading-relaxed">We believe in using technology to solve real challenges and empower rural communities. With HerdTrace, you gain peace of mind knowing your herd is always one step ahead.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-[#2B5669] animate-on-scroll" id="our-story">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-16">Our Story & Values</h2>
+
+      <div class="mb-16 text-left md:text-center">
+        <h3 class="text-3xl font-semibold text-white mb-6 flex items-center justify-center md:justify-center">
+          <i class="fas fa-bullseye text-[#f39c12] mr-4 text-4xl"></i> Our Mission
+        </h3>
+        <p class="text-xl leading-relaxed max-w-3xl mx-auto text-gray-200">To empower farmers with smart, affordable, technology that protects livestock, prevents theft and improves herd management across rural and commercial farming communities.</p>
+      </div>
+
+      <div class="mb-16 text-left md:text-center">
+        <h3 class="text-3xl font-semibold text-white mb-6 flex items-center justify-center md:justify-center">
+          <i class="fas fa-eye text-[#f39c12] mr-4 text-4xl"></i> Our Vision
+        </h3>
+        <p class="text-xl leading-relaxed max-w-3xl mx-auto text-gray-200">To become Africa's leading livestock security and tracking platform - creating safer, smarter farms through innovation, data and accessible technology.</p>
+      </div>
+
+      <div class="mb-16 text-center">
+        <h3 class="text-3xl font-semibold text-white mb-10">Our Values</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-lightbulb text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Innovation</h4>
+            <p class="text-base text-gray-300">We solve farming challenges using the latest technology.</p>
+          </div>
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-handshake text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Integrity</h4>
+            <p class="text-base text-gray-300">Transparency and trust are core to our mission.</p>
+          </div>
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-lock text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Security</h4>
+            <p class="text-base text-gray-300">Your livestock’s safety is our top priority.</p>
+          </div>
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-users text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Customer-Centricity</h4>
+            <p class="text-base text-gray-300">We build for farmers, with farmers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-10 text-left md:text-center">
+        <h3 class="text-3xl font-semibold text-white mb-6 flex items-center justify-center md:justify-center">
+          <i class="fas fa-seedling text-[#f39c12] mr-4 text-4xl"></i> Our Culture
+        </h3>
+        <p class="text-xl leading-relaxed max-w-3xl mx-auto text-gray-200">At HerdTrace, we foster a culture of teamwork, innovation, and inclusivity. As a company proudly founded by passionate women, we are committed to diversity and empowering others in agriculture and technology.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="team">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-12">Meet Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="zomzi">
+          <img src="images/zomzi.jpeg" alt="Zomzi Mpelane" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Zomzi Mpelane</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Head of Administration</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
+        </div>
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="zusiphe">
+          <img src="images/zusiphe.jpeg" alt="Zusiphe Makeleni" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Zusiphe Makeleni</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Head of Sales and Marketing</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
+        </div>
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="akhona">
+          <img src="images/akhona.jpeg" alt="Akhona Dlala" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Akhona Dlala</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Head of Finance</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
+        </div>
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="noxolo">
+          <img src="images/noxolo.jpeg" alt="Noxolo Mjokovane" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Noxolo Mjokovane</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Chief Operations Officer</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
+        </div>
+      </div>
+      <div class="mt-16">
+        <h3 class="text-3xl font-semibold text-[#2B5669] mb-6">Join HerdTrace Today</h3>
+        <p class="text-lg leading-relaxed mb-8 max-w-3xl mx-auto">Ready to take your livestock management to the next level? Join us today and start securing your herd.</p>
+        <button class="bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-lg" aria-label="Sign up for HerdTrace now">
+          Sign Up Now
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-[#2B5669] animate-on-scroll" id="features">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-16">Smart Features for Smarter Farming</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 animate-stagger">
+        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
+          <div class="text-6xl mb-6 text-[#f39c12]">📍</div>
+          <h3 class="font-semibold text-2xl text-white mb-3">Real-time Tracking</h3>
+          <p class="text-base text-gray-300">Pinpoint your livestock on the map 24/7 with precision.</p>
+        </div>
+        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
+          <div class="text-6xl mb-6 text-[#f39c12]">🐐</div>
+          <h3 class="font-semibold text-2xl text-white mb-3">Easy Registration</h3>
+          <p class="text-base text-gray-300">Register goats, sheep or cows in seconds via our intuitive platform.</p>
+        </div>
+        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
+          <div class="text-6xl mb-6 text-[#f39c12]">🚨</div>
+          <h3 class="font-semibold text-2xl text-white mb-3">Theft Alerts</h3>
+          <p class="text-base text-gray-300">Be notified instantly through SMS or app alerts if something’s wrong.</p>
+        </div>
+        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
+          <div class="text-6xl mb-6 text-[#f39c12]">🩺</div>
+          <h3 class="font-semibold text-2xl text-white mb-3">Health Monitoring</h3>
+          <p class="text-base text-gray-300">Track conditions, vaccinations, and growth patterns for optimal health.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="why-choose-us">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Why Choose HerdTrace?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 animate-stagger">
+        <div class="p-8 border-2 border-[#f39c12] rounded-xl shadow-sm card-hover-effect flex flex-col items-center bg-white">
+          <div class="text-6xl mb-6 text-[#f39c12]">
+              <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="text-3xl font-semibold mb-3 text-[#2B5669]">Built for Security</h3>
+          <p class="text-lg text-gray-700">Gain peace of mind with advanced theft detection and real-time alerts protecting your valuable livestock.</p>
+        </div>
+        <div class="p-8 border-2 border-[#f39c12] rounded-xl shadow-sm card-hover-effect flex flex-col items-center bg-white">
+          <div class="text-6xl mb-6 text-[#f39c12]">
+              <i class="fas fa-microchip"></i>
+          </div>
+          <h3 class="text-3xl font-semibold mb-3 text-[#2B5669]">Smart Technology</h3>
+          <p class="text-lg text-gray-700">Leverage cutting-edge GPS and robust offline tracking capabilities, ensuring continuous monitoring.</p>
+        </div>
+        <div class="p-8 border-2 border-[#f39c12] rounded-xl shadow-sm card-hover-effect flex flex-col items-center bg-white">
+          <div class="text-6xl mb-6 text-[#f39c12]">
+              <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3 class="text-3xl font-semibold mb-3 text-[#2B5669]">Livestock Health</h3>
+          <p class="text-lg text-gray-700">Receive proactive alerts for potential health issues, allowing you to intervene before problems escalate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-white animate-on-scroll" id="smart-tracking-tools">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Smart Tracking Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 animate-stagger">
+        <div class="tool-card-container bg-[#FAFEE6] rounded-xl shadow-lg card-hover-effect">
+          <div class="tool-image-wrapper">
+            <img src="images/Tags.jpeg" alt="Smart Ear Tag" class="tool-image-wrapper-img">
+          </div>
+          <div class="tool-text-content">
+            <p class="font-semibold text-xl text-gray-800">Smart Ear Tag</p>
+            <p class="text-base text-gray-600 mt-3">Durable, long-lasting tags for precise animal identification and tracking.</p>
+          </div>
+        </div>
+        <div class="tool-card-container bg-[#FAFEE6] rounded-xl shadow-lg card-hover-effect">
+          <div class="tool-image-wrapper">
+            <img src="images/App.webp" alt="HerdTrace Mobile App" class="tool-image-wrapper-img">
+          </div>
+          <div class="tool-text-content">
+            <p class="font-semibold text-xl text-gray-800">HerdTrace Mobile App</p>
+            <p class="text-base text-gray-600 mt-3">Manage your herd, view alerts, and access data from anywhere.</p>
+          </div>
+        </div>
+        <div class="tool-card-container bg-[#FAFEE6] rounded-xl shadow-lg card-hover-effect">
+          <div class="tool-image-wrapper">
+            <img src="images/Microchip.png" alt="Secure Microchip" class="tool-image-wrapper-img">
+          </div>
+          <div class="tool-text-content">
+            <p class="font-semibold text-xl text-gray-800">Secure Microchip</p>
+            <p class="text-base text-gray-600 mt-3">Discreet and secure internal tracking for enhanced theft prevention.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-[#2B5669] text-white animate-on-scroll" id="pricing">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-16">Our Flexible Pricing Plans</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 animate-stagger">
+        <div class="bg-white text-[#2B5669] rounded-xl p-10 shadow-lg card-hover-effect">
+          <h3 class="text-4xl font-bold mb-4">Small-Scale Plan</h3>
+          <p class="text-5xl font-bold mb-3">R350<span class="text-2xl font-normal">/month</span></p>
+          <p class="text-base mb-6 text-gray-600">Installation Fee: R1,100</p>
+          <ul class="list-none text-xl text-left space-y-4 mt-8">
+            <li><i class="fas fa-check text-green-500 mr-4"></i> 4 Ear Tags</li>
+            <li><i class="fas fa-check text-green-500 mr-4"></i> 10 Microchips</li>
+            <li><i class="fas fa-times text-red-500 mr-4"></i> Weather Updates</li>
+            <li><i class="fas fa-times text-red-500 mr-4"></i> Health Monitoring</li>
+          </ul>
+          <button class="mt-10 bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-lg" aria-label="Choose Small-Scale Plan">
+            Choose Plan
+          </button>
+        </div>
+        <div class="bg-white text-[#2B5669] rounded-xl p-10 shadow-lg card-hover-effect">
+          <h3 class="text-4xl font-bold mb-4">Large-Scale Plan</h3>
+          <p class="text-5xl font-bold mb-3">R1,700<span class="text-2xl font-normal">/month</span></p>
+          <p class="text-base mb-6 text-gray-600">Installation Fee: R10,000</p>
+          <ul class="list-none text-xl text-left space-y-4 mt-8">
+            <li><i class="fas fa-check text-green-500 mr-4"></i> 40 Ear Tags</li>
+            <li><i class="fas fa-check text-green-500 mr-4"></i> 50 Microchips</li>
+            <li><i class="fas fa-check text-green-500 mr-4"></i> Weather Updates</li>
+            <li><i class="fas fa-check text-green-500 mr-4"></i> Health Monitoring</li>
+          </ul>
+          <button class="mt-10 bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-lg" aria-label="Choose Large-Scale Plan">
+            Choose Plan
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-[#1F3F4C] text-white animate-on-scroll" id="faq-section">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+
+      <div class="space-y-8" id="faqAccordion">
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="faq-content-1">
+            <span class="text-xl font-semibold">Do I need internet to use HerdTrace?</span>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="faq-content-1" class="faq-content" role="region" aria-labelledby="faq-toggle-1">
+            No, a constant internet connection is not required to use HerdTrace. Our smart tracking system is designed with robust offline capabilities, ensuring your livestock can be monitored even in remote areas with limited or no internet access. We also provide essential updates and alerts directly via SMS, so you stay informed and connected regardless of your smartphone ownership or network availability. This makes HerdTrace an ideal solution for rural farming communities across South Africa.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="faq-content-2">
+            <span class="text-xl font-semibold">What animals can I track?</span>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="faq-content-2" class="faq-content" role="region" aria-labelledby="faq-toggle-2">
+            Currently, HerdTrace supports comprehensive livestock tracking for various animals, including cows, sheep, and goats. Our ear tags and microchips are specifically designed to be safe and effective for these common farm animals. We are continuously researching and developing our technology to expand compatibility and will announce support for additional species in future updates, ensuring our animal monitoring solutions meet the evolving needs of farmers.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="faq-content-3">
+            <span class="text-xl font-semibold">How does theft detection work?</span>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="faq-content-3" class="faq-content" role="region" aria-labelledby="faq-toggle-3">
+            Our theft detection system leverages advanced GPS tracking and integrated motion sensors within the ear tags and microchips. If an animal moves outside a predefined safe zone (geofence) or exhibits unusual activity patterns, the system instantly triggers a theft alert. You will receive real-time notifications via the HerdTrace mobile app or SMS, allowing for immediate intervention and enhancing the security of your livestock. This proactive approach to livestock security helps prevent theft and aids in quick recovery.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="faq-content-4">
+            <span class="text-xl font-semibold">Can I register multiple farms?</span>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="faq-content-4" class="faq-content" role="region" aria-labelledby="faq-toggle-4">
+            Yes, HerdTrace is designed to support comprehensive farm management for both small-scale and large-scale operations. You can easily register and manage multiple herds across different farm locations from a single, unified dashboard within the HerdTrace mobile application. This feature provides a streamlined overview of all your livestock, making it convenient to monitor and control your entire farming enterprise efficiently. Our farm management software simplifies complex tasks for multi-farm owners.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false" aria-controls="faq-content-5">
+            <span class="text-xl font-semibold">Is it available in rural areas?</span>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="faq-content-5" class="faq-content" role="region" aria-labelledby="faq-toggle-5">
+            Absolutely. HerdTrace was specifically engineered to perform optimally in diverse South African rural farming conditions. Our robust offline capabilities and SMS notification system ensure reliable livestock tracking and communication even in areas with limited infrastructure or internet connectivity. We are committed to providing accessible technology solutions that empower farmers in remote areas, helping them secure their herds and improve their farming practices.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator">
+
+  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="contact">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-12">Join Our Waiting List Now!</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="relative w-full overflow-hidden rounded-xl shadow-lg square-aspect-ratio">
+          <img src="images/sheeps3.jpeg" alt="Sheep on a farm" class="contact-slide-image active">
+          <img src="images/cattle.jpg" alt="Another sheep on a farm" class="contact-slide-image">
+          <img src="images/goats.jpg" alt="More sheep on a farm" class="contact-slide-image">
+          <img src="images/cow_&_2_calves.jpg" alt="Cow and two calves" class="contact-slide-image">
+          <img src="images/goats_2.jpg" alt="A cow in a field" class="contact-slide-image">
+        </div>
+        <form class="bg-white rounded-xl shadow-lg square-aspect-ratio" id="contact-form">
+          <div class="form-content-wrapper">
+            <input type="text" placeholder="Name" id="contact-name" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Name">
+            <input type="text" placeholder="Surname" id="contact-surname" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Surname">
+            <input type="tel" placeholder="Phone Number" id="contact-phone" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Phone Number">
+            <input type="email" placeholder="Email Address" id="contact-email" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Email Address">
+            <button type="submit" class="bg-[#f39c12] text-white font-bold py-4 px-10 rounded-md shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-xl w-full" aria-label="Send your contact information">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-separator" data-permanent-hr>
+
+  <section class="py-24 bg-white animate-on-scroll" id="partners-section">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Trusted Partners</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 animate-stagger">
+        <div class="partner-card-flip">
+          <div class="partner-card-inner">
+            <div class="partner-card-front">
+              <img src="images/deviare_logo.webp" class="partner-logo mb-4" alt="Deviare Logo">
+              <h3 class="font-semibold text-xl text-[#2B5669]">Deviare</h3>
+            </div>
+            <div class="partner-card-back">
+              <p class="text-lg">Tech skills, business support & digital growth powered by Deviare.</p>
+            </div>
+          </div>
+        </div>
+        <div class="partner-card-flip">
+          <div class="partner-card-inner">
+            <div class="partner-card-front">
+              <img src="images/liquidtelecomsa_logo.png" class="partner-logo mb-4" alt="Liquid Logo">
+              <h3 class="font-semibold text-xl text-[#2B5669]">Liquid Intelligent Technologies</h3>
+            </div>
+            <div class="partner-card-back">
+              <p class="text-lg">Connectivity and innovation championed by Liquid Intelligent Technologies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-[#2B5669] text-white py-10 text-center">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center md:justify-between items-center mb-6">
+        <a href="#home" class="flex items-center space-x-4 mb-4 md:mb-0">
+          <img src="images/logo.png" alt="HerdTrace Logo" class="h-12">
+          <span class="text-2xl font-semibold">HerdTrace</span>
+        </a>
+        <nav class="flex flex-wrap justify-center space-x-6 md:space-x-8 text-lg">
+          <a href="#home" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
+          <a href="#about-intro" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
+          <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
+          <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
+          <a href="#contact" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Contact</a>
+        </nav>
+      </div>
+      <p class="text-base mb-4">&copy; 2025 HerdTrace. All rights reserved.</p>
+      <div class="flex justify-center space-x-8 mt-4">
+        <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-gray-300 text-3xl transition duration-0.3s ease-in-out" aria-label="Visit us on Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-gray-300 text-3xl transition duration-0.3s ease-in-out" aria-label="Connect with us on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:herdtrace@gmail.com" class="hover:text-gray-300 text-3xl transition duration-0.3s ease-in-out" aria-label="Send us an email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="team-member-modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-member-name">
+    <div id="team-member-modal-content" class="modal-content text-center">
+      <button id="modal-close-button" class="modal-close-button" aria-label="Close team member details">&times;</button>
+      <img id="modal-member-image" alt="Team Member" class="modal-member-image" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+      <h3 id="modal-member-name" class="text-3xl font-bold mb-2"></h3>
+      <p id="modal-member-title" class="text-xl text-gray-700 mb-4"></p>
+      <p id="modal-member-description" class="text-lg text-gray-600 leading-relaxed"></p>
+    </div>
+  </div>
+
+<script>
+  const teamMembersData = {
+    zomzi: {
+      name: "Zomzi Mpelane",
+      title: "Co-founder & Head of Administration",
+      description: "Zomzi brings extensive experience in administrative management and business development, ensuring the smooth operation and strategic growth of HerdTrace. Her meticulous approach and leadership are vital to our daily functions and long-term planning.",
+      image: "images/zomzi.jpeg"
+    },
+    zusiphe: {
+      name: "Zusiphe Makeleni",
+      title: "Co-founder & Head of Sales and Marketing",
+      description: "Zusiphe is a dynamic marketing professional with a background in digital marketing, driving HerdTrace's market presence and customer engagement. Her innovative strategies help us connect with farmers and expand our reach across communities.",
+      image: "images/zusiphe.jpeg"
+    },
+    akhona: {
+      name: "Akhona Dlala",
+      title: "Co-founder & Head of Finance",
+      description: "Akhona is a finance expert responsible for managing the financial health of HerdTrace, ensuring sustainability and growth. Her sharp analytical skills and foresight are crucial in navigating our financial landscape and securing resources for our mission.",
+      image: "images/akhona.jpeg"
+    },
+    noxolo: {
+      name: "Noxolo Mjokovane",
+      title: "Co-founder & Chief Operations Officer",
+      description: "Noxolo oversees the operations at HerdTrace, ensuring efficient service delivery and product deployment. Her leadership in operational excellence guarantees that our solutions are effectively implemented and continuously improved to meet farmer needs.",
+      image: "images/noxolo.jpeg"
+    }
+  };
+
+  const heroImages = document.querySelectorAll('.hero-slide-image');
+  let currentHeroIndex = 0;
+
+  function showHeroSlide(index) {
+    heroImages.forEach((img, i) => {
+      img.classList.remove('active');
+    });
+    heroImages[index].classList.add('active');
+  }
+
+  function nextHeroSlide() {
+    currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+    showHeroSlide(currentHeroIndex);
+  }
+
+  if (heroImages.length > 1) {
+    setInterval(nextHeroSlide, 7000);
+    showHeroSlide(currentHeroIndex);
+  }
+
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const faqItem = button.closest('.faq-item');
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('svg');
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+      document.querySelectorAll('.faq-item.active').forEach(activeFaqItem => {
+        if (activeFaqItem !== faqItem) {
+          activeFaqItem.classList.remove('active');
+          const activeContent = activeFaqItem.querySelector('.faq-content');
+          const activeToggle = activeFaqItem.querySelector('.faq-toggle');
+          const activeIcon = activeFaqItem.querySelector('svg');
+
+          activeContent.classList.remove('open');
+          activeToggle.setAttribute('aria-expanded', 'false');
+          activeIcon.classList.remove('rotate-180');
+        }
+      });
+
+      if (isExpanded) {
+        faqItem.classList.remove('active');
+        content.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        icon.classList.remove('rotate-180');
+      } else {
+        faqItem.classList.add('active');
+        content.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+        icon.classList.add('rotate-180');
+      }
+    });
+  });
+
+  const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+  const animateStaggerElements = document.querySelectorAll('.animate-stagger');
+  const sectionSeparators = document.querySelectorAll('.section-separator');
+
+  let lastScrollY = window.scrollY;
+  let hrVisibilityState = new Map();
+
+  const generalObserverOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const generalObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      const element = entry.target;
+      if (entry.isIntersecting && !element.classList.contains('section-separator')) {
+        element.classList.add('animate-in');
+        if (element.classList.contains('animate-stagger')) {
+            Array.from(element.children).forEach((child, index) => {
+                child.style.transitionDelay = `${index * 0.1}s`;
+                child.style.opacity = '1';
+                child.style.transform = 'translateY(0)';
+            });
+        }
+        observer.unobserve(element);
+      }
+    });
+  }, generalObserverOptions);
+
+  animateOnScrollElements.forEach(element => {
+    generalObserver.observe(element);
+  });
+  animateStaggerElements.forEach(element => {
+    generalObserver.observe(element);
+  });
+
+  const hrObserverOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: [0, 1.0]
+  };
+
+  const hrObserver = new IntersectionObserver((entries) => {
+    const currentScrollY = window.scrollY;
+    const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
+    lastScrollY = currentScrollY;
+
+    entries.forEach(entry => {
+      const element = entry.target;
+      if (element.classList.contains('section-separator')) {
+        const isPermanent = element.hasAttribute('data-permanent-hr');
+        let currentState = hrVisibilityState.get(element) || { wasIntersecting: false, hasBeenFullyVisible: false };
+
+        if (entry.isIntersecting) {
+          element.style.transformOrigin = 'left';
+          element.style.transform = 'scaleX(1)';
+          element.style.opacity = '1';
+
+          if (entry.intersectionRatio === 1.0) {
+            currentState.hasBeenFullyVisible = true;
+          }
+          currentState.wasIntersecting = true;
+        } else {
+          const rect = element.getBoundingClientRect();
+          const isAtPageBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 50);
+
+          if (isPermanent && isAtPageBottom) {
+            element.style.transform = 'scaleX(1)';
+            element.style.opacity = '1';
+          } else {
+            if (scrollDirection === 'up' && rect.bottom < 0) {
+              element.style.transformOrigin = 'right';
+              element.style.transform = 'scaleX(0)';
+              element.style.opacity = '0';
+            } else if (scrollDirection === 'down' && rect.top > window.innerHeight) {
+              element.style.transformOrigin = 'left';
+              element.style.transform = 'scaleX(0)';
+              element.style.opacity = '0';
+            }
+          }
+          currentState.wasIntersecting = false;
+        }
+        hrVisibilityState.set(element, currentState);
+      }
+    });
+  }, hrObserverOptions);
+
+  sectionSeparators.forEach(separator => {
+    hrObserver.observe(separator);
+  });
+
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const firstMobileMenuItem = mobileMenu.querySelector('a');
+
+  function openMobileMenu() {
+    mobileMenu.classList.remove('hidden');
+    closeMobileMenuButton.focus();
+    trapFocus(mobileMenu);
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    mobileMenuButton.focus();
+  }
+
+  mobileMenuButton.addEventListener('click', openMobileMenu);
+  closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+
+  function trapFocus(element) {
+    const focusableEls = element.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    const firstFocusableEl = focusableEls[0];
+    const lastFocusableEl = focusableEls[focusableEls.length - 1];
+
+    element.addEventListener('keydown', function(e) {
+      const isTabPressed = (e.key === 'Tab');
+
+      if (!isTabPressed) {
+        return;
+      }
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusableEl) {
+          lastFocusableEl.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastFocusableEl) {
+          firstFocusableEl.focus();
+          e.preventDefault();
+        }
+      }
+    });
+  }
+
+  const contactImages = document.querySelectorAll('.contact-slide-image');
+  let currentContactIndex = 0;
+
+  function showContactSlide(index) {
+    contactImages.forEach((img, i) => {
+      img.classList.remove('active');
+    });
+    if (contactImages[index]) {
+        contactImages[index].classList.add('active');
+    } else {
+        console.error('Attempted to show non-existent contact slide at index:', index);
+    }
+  }
+
+  function nextContactSlide() {
+    currentContactIndex = (currentContactIndex + 1) % contactImages.length;
+    showContactSlide(currentContactIndex);
+  }
+
+  if (contactImages.length > 1) {
+    setInterval(nextContactSlide, 8000);
+    showContactSlide(currentContactIndex);
+  } else {
+    if (contactImages.length === 1) {
+        contactImages[0].classList.add('active');
+    }
+  }
+
+  const teamMemberCards = document.querySelectorAll('.team-member-card');
+  const modalOverlay = document.getElementById('team-member-modal-overlay');
+  const modalCloseButton = document.getElementById('modal-close-button');
+  const modalMemberImage = document.getElementById('modal-member-image');
+  const modalMemberName = document.getElementById('modal-member-name');
+  const modalMemberTitle = document.getElementById('modal-member-title');
+  const modalMemberDescription = document.getElementById('modal-member-description');
+
+  function openModal(memberData) {
+    modalMemberImage.src = memberData.image;
+    modalMemberName.textContent = memberData.name;
+    modalMemberTitle.textContent = memberData.title;
+    modalMemberDescription.textContent = memberData.description;
+    modalOverlay.classList.add('open');
+    modalCloseButton.focus();
+    trapFocus(modalOverlay);
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('open');
+  }
+
+  teamMemberCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const memberId = card.dataset.memberId;
+      const memberData = teamMembersData[memberId];
+      if (memberData) {
+        openModal(memberData);
+      }
+    });
+  });
+
+  modalCloseButton.addEventListener('click', closeModal);
+
+  modalOverlay.addEventListener('click', (event) => {
+    if (event.target === modalOverlay) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modalOverlay.classList.contains('open')) {
+      closeModal();
+    }
+  });
+
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('contact-name').value.trim();
+    const surname = document.getElementById('contact-surname').value.trim();
+    const phone = document.getElementById('contact-phone').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+
+    let isValid = true;
+
+    if (name === '') {
+      alert('Please enter your Name.');
+      isValid = false;
+    } else if (surname === '') {
+      alert('Please enter your Surname.');
+      isValid = false;
+    } else if (phone === '' || !/^\+?[0-9\s-()]{7,20}$/.test(phone)) {
+      alert('Please enter a valid Phone Number.');
+      isValid = false;
+    } else if (email === '' || !/\S+@\S+\.\S+/.test(email)) {
+      alert('Please enter a valid Email Address.');
+      isValid = false;
+    }
+
+    if (isValid) {
+      console.log('Form submitted:', { name, surname, phone, email });
+      alert('Thank you for joining our waiting list! We will be in touch soon.');
+      contactForm.reset();
+    }
+  });
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    sectionSeparators.forEach(hr => {
+      hr.style.transform = 'scaleX(0)';
+      hr.style.opacity = '0';
+    });
+  });
+
+</script>
+
+</body>
+</html>
