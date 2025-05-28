@@ -54,7 +54,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
+      opacity: 1;
       transition: opacity 1.5s ease-in-out;
       z-index: 1;
     }
@@ -64,7 +64,7 @@
     }
     .hero-overlay {
       position: relative;
-      z-index: 3;
+      z-index: 2;
     }
 
     .faq-item {
@@ -394,7 +394,7 @@
         <span class="text-3xl md:text-4xl font-semibold">HerdTrace</span>
       </a>
       <nav class="space-x-6 hidden md:block">
-        <a href="#home" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
+        <a href="index.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
         <a href="#about-intro" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
         <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
         <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
@@ -416,319 +416,124 @@
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="h-screen relative pt-20 overflow-hidden flex flex-col items-center justify-center text-center text-white" id="home">
-    <img src="images/hero_image.jpg" alt="Livestock on a farm" class="hero-slide-image active">
-    <img src="images/goats.jpg" alt="Goats grazing" class="hero-slide-image">
-    <img src="images/cattle.jpg" alt="Cattle in a field" class="hero-slide-image">
+    <img src="images/sheeps3.jpeg" alt="Livestock on a farm" class="hero-slide-image active">
 
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white hero-overlay">
-      <h1 class="text-5xl md:text-7xl font-bold uppercase drop-shadow-lg animate-on-scroll">HERDTRACE</h1>
-      <p class="text-xl md:text-3xl mt-4 drop-shadow-md animate-on-scroll" style="transition-delay: 0.2s;">Track every step. Secure every herd.</p>
-      <div id="hero-message-slider" class="mt-8 text-center animate-on-scroll text-lg md:text-xl h-8 relative overflow-hidden">
-       <p class="transition-opacity duration-700 ease-in-out opacity-100">Get started with HerdTrace and secure your livestock.</p>
-      </div>
-      <div class="absolute bottom-6 right-6 bg-black bg-opacity-60 text-white p-6 rounded-xl shadow-lg max-w-sm z-50 text-left animate-on-scroll">
-       <h3 class="text-2xl font-bold mb-2">Get Started with HerdTrace</h3>
-       <p class="text-base mb-4">Ready to take your livestock management to the next level? Join us today and start securing your herd.</p>
-  <div class="text-center">
-    <a href="#contact" class="inline-block bg-[#f39c12] text-white font-semibold px-6 py-3 rounded-full hover:bg-yellow-600 transform hover:scale-105 transition" aria-label="Sign up now for HerdTrace">
-      Sign Up
+    <div class="hero-overlay flex flex-col items-center justify-center text-white text-center h-full px-4">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">Welcome to HerdTrace</h1>
+    <p class="text-lg md:text-2xl mb-6">Transforming livestock management with technology</p>
+    <a href="#our-story" class="text-[#f39c12] font-semibold underline text-lg hover:text-yellow-500 transition">
+      Learn more about our journey
     </a>
   </div>
-</div>
     </div>
   </section>
 
-  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="about-intro">
+  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="our-story">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-8">Welcome to HerdTrace</h2>
-      <p class="text-xl leading-relaxed mb-8">Transforming livestock management with technology</p>
-      <div class="max-w-3xl mx-auto">
-        <p class="mb-6 text-lg leading-relaxed">HerdTrace is a smart livestock tracking system designed to help farmers protect and manage their animals with ease.</p>
-        <p class="mb-6 text-lg leading-relaxed">We offer a reliable solution to monitor livestock location and health in real time. Our mobile app provides farmers with updates and alerts, making it easier to track animals, prevent theft, and record important health data.</p>
-        <p class="mb-6 text-lg leading-relaxed">Whether you’re a commercial or small-scale farmer, HerdTrace is built to be simple, accessible, and effective. For farmers who do not own smartphones, we offer SMS notifications to ensure everyone stays informed and connected.</p>
-        <p class="text-lg leading-relaxed">We believe in using technology to solve real challenges and empower rural communities. With HerdTrace, you gain peace of mind knowing your herd is always one step ahead.</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Story & Values</h2>
+
+      <div class="mb-16 text-left md:text-center">
+        <h3 class="text-3xl font-semibold text-[#2B5669] mb-6 flex items-center justify-center md:justify-center">
+          <i class="fas fa-bullseye text-[#f39c12] mr-4 text-4xl"></i> Our Mission
+        </h3>
+        <p class="text-xl leading-relaxed max-w-3xl mx-auto text-black">To empower farmers with smart, affordable, technology that protects livestock, prevents theft and improves herd management across rural and commercial farming communities.</p>
+      </div>
+
+      <div class="mb-16 text-left md:text-center">
+        <h3 class="text-3xl font-semibold text-[#2B5669]  mb-6 flex items-center justify-center md:justify-center">
+          <i class="fas fa-eye text-[#f39c12] mr-4 text-4xl"></i> Our Vision
+        </h3>
+        <p class="text-xl leading-relaxed max-w-3xl mx-auto text-black">To become Africa's leading livestock security and tracking platform - creating safer, smarter farms through innovation, data and accessible technology.</p>
+      </div>
+
+      <div class="mb-16 text-center">
+        <h3 class="text-3xl font-semibold text-[#2B5669]  mb-10 flex items-center justify-center">
+            <i class="fas fa-heart text-[#f39c12] text-4xl mr-4"></i> Our values
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-lightbulb text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Innovation</h4>
+            <p class="text-base text-gray-300">We solve farming challenges using the latest technology.</p>
+          </div>
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-handshake text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Integrity</h4>
+            <p class="text-base text-gray-300">Transparency and trust are core to our mission.</p>
+          </div>
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-lock text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Security</h4>
+            <p class="text-base text-gray-300">Your livestock’s safety is our top priority.</p>
+          </div>
+          <div class="flex flex-col items-center p-8 bg-[#1F3F4C] rounded-xl shadow-md card-hover-effect">
+            <i class="fas fa-users text-5xl text-[#f39c12] mb-4"></i>
+            <h4 class="font-semibold text-xl text-white mb-3">Customer-Centricity</h4>
+            <p class="text-base text-gray-300">We build for farmers, with farmers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-10 text-left md:text-center">
+        <h3 class="text-3xl font-semibold text-[#2B5669] mb-6 flex items-center justify-center md:justify-center">
+          <i class="fas fa-seedling text-[#f39c12] mr-4 text-4xl"></i> Our Culture
+        </h3>
+        <p class="text-xl leading-relaxed max-w-3xl mx-auto text-black">At HerdTrace, we foster a culture of teamwork, innovation, and inclusivity. As a company proudly founded by passionate women, we are committed to diversity and empowering others in agriculture and technology.</p>
       </div>
     </div>
   </section>
 
   <hr class="section-separator">
-  
-  <section class="py-16 bg-white text-[#2B5669] text-center animate-on-scroll">
-    <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Built for Farmers. Powered by Purpose.</h2>
-      <p class="text-lg leading-relaxed">
-      HerdTrace is more than just livestock tracking — it's a movement to protect, empower, and connect South African farmers through innovative, accessible technology. 
-      <a href="aboutus.html" class="text-[#f39c12] font-semibold hover:underline hover:text-yellow-600 transition">Learn more</a> about our story, our values, and the women behind the mission.
-    </p>
-  </div>
-</section>
 
-
-  <hr class="section-separator">
-
-  <section class="py-24 bg-[#2B5669] animate-on-scroll" id="features">
+  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="team">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-16">Smart Features for Smarter Farming</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 animate-stagger">
-        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
-          <div class="text-6xl mb-6 text-[#f39c12]">📍</div>
-          <h3 class="font-semibold text-2xl text-white mb-3">Real-time Tracking</h3>
-          <p class="text-base text-gray-300">Pinpoint your livestock on the map 24/7 with precision.</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-12">Meet Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="zomzi">
+          <img src="images/zomzi.jpeg" alt="Zomzi Mpelane" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Zomzi Mpelane</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Head of Administration</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
         </div>
-        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
-          <div class="text-6xl mb-6 text-[#f39c12]">🐐</div>
-          <h3 class="font-semibold text-2xl text-white mb-3">Easy Registration</h3>
-          <p class="text-base text-gray-300">Register Cattle, Sheep and Cows in seconds via our intuitive platform.</p>
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="zusiphe">
+          <img src="images/zusiphe.jpeg" alt="Zusiphe Makeleni" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Zusiphe Makeleni</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Head of Sales and Marketing</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
         </div>
-        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
-          <div class="text-6xl mb-6 text-[#f39c12]">🚨</div>
-          <h3 class="font-semibold text-2xl text-white mb-3">Theft Alerts</h3>
-          <p class="text-base text-gray-300">Be notified instantly through SMS or app alerts if something’s wrong.</p>
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="akhona">
+          <img src="images/akhona.jpeg" alt="Akhona Dlala" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Akhona Dlala</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Head of Finance</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
         </div>
-        <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
-          <div class="text-6xl mb-6 text-[#f39c12]">🩺</div>
-          <h3 class="font-semibold text-2xl text-white mb-3">Health Monitoring</h3>
-          <p class="text-base text-gray-300">Track conditions, vaccinations, and growth patterns for optimal health.</p>
+        <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-md cursor-pointer team-member-card card-hover-effect" data-member-id="noxolo">
+          <img src="images/noxolo.jpeg" alt="Noxolo Mjokovane" class="modal-member-image mb-4" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/000000?text=Image+Error';">
+          <h4 class="font-semibold text-xl text-[#2B5669]">Noxolo Mjokovane</h4>
+          <p class="text-base text-gray-600 text-center">Co-founder & Chief Operations Officer</p>
+          <span class="inline-flex items-center text-[#f39c12] hover:text-yellow-600 transition-colors duration-300 mt-2 text-sm font-semibold">
+            Read More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+          </span>
         </div>
+      </div>
+      <div class="mt-16">
+        <h3 class="text-3xl font-semibold text-[#2B5669] mb-6">Join HerdTrace Today</h3>
+        <p class="text-lg leading-relaxed mb-8 max-w-3xl mx-auto">Ready to take your livestock management to the next level? Join us today and start securing your herd.</p>
+        <button class="bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-lg" aria-label="Sign up for HerdTrace now">
+          Contact Us
+        </button>
       </div>
     </div>
   </section>
-
-  <hr class="section-separator">
-
-  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="why-choose-us">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Why Choose HerdTrace?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 animate-stagger">
-        <div class="p-8 border-2 border-[#f39c12] rounded-xl shadow-sm card-hover-effect flex flex-col items-center bg-white">
-          <div class="text-6xl mb-6 text-[#f39c12]">
-              <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="text-3xl font-semibold mb-3 text-[#2B5669]">Built for Security</h3>
-          <p class="text-lg text-gray-700">Gain peace of mind with advanced theft detection and real-time alerts protecting your valuable livestock.</p>
-        </div>
-        <div class="p-8 border-2 border-[#f39c12] rounded-xl shadow-sm card-hover-effect flex flex-col items-center bg-white">
-          <div class="text-6xl mb-6 text-[#f39c12]">
-              <i class="fas fa-microchip"></i>
-          </div>
-          <h3 class="text-3xl font-semibold mb-3 text-[#2B5669]">Smart Technology</h3>
-          <p class="text-lg text-gray-700">Leverage cutting-edge GPS and robust offline tracking capabilities, ensuring continuous monitoring.</p>
-        </div>
-        <div class="p-8 border-2 border-[#f39c12] rounded-xl shadow-sm card-hover-effect flex flex-col items-center bg-white">
-          <div class="text-6xl mb-6 text-[#f39c12]">
-              <i class="fas fa-heartbeat"></i>
-          </div>
-          <h3 class="text-3xl font-semibold mb-3 text-[#2B5669]">Livestock Health</h3>
-          <p class="text-lg text-gray-700">Receive proactive alerts for potential health issues, allowing you to intervene before problems escalate.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-separator">
-
-  <section class="py-24 bg-white animate-on-scroll" id="smart-tracking-tools">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Smart Tracking Tools</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 animate-stagger">
-        <div class="tool-card-container bg-[#FAFEE6] rounded-xl shadow-lg card-hover-effect">
-          <div class="tool-image-wrapper">
-            <img src="images/Tags.jpeg" alt="Smart Ear Tag" class="tool-image-wrapper-img">
-          </div>
-          <div class="tool-text-content">
-            <p class="font-semibold text-xl text-gray-800">Smart Ear Tag</p>
-            <p class="text-base text-gray-600 mt-3">Durable, long-lasting tags for precise animal identification and tracking.</p>
-          </div>
-        </div>
-        <div class="tool-card-container bg-[#FAFEE6] rounded-xl shadow-lg card-hover-effect">
-          <div class="tool-image-wrapper">
-            <img src="images/App.webp" alt="HerdTrace Mobile App" class="tool-image-wrapper-img">
-          </div>
-          <div class="tool-text-content">
-            <p class="font-semibold text-xl text-gray-800">HerdTrace Mobile App</p>
-            <p class="text-base text-gray-600 mt-3">Manage your herd, view alerts, and access data from anywhere.</p>
-          </div>
-        </div>
-        <div class="tool-card-container bg-[#FAFEE6] rounded-xl shadow-lg card-hover-effect">
-          <div class="tool-image-wrapper">
-            <img src="images/Microchip.png" alt="Secure Microchip" class="tool-image-wrapper-img">
-          </div>
-          <div class="tool-text-content">
-            <p class="font-semibold text-xl text-gray-800">Secure Microchip</p>
-            <p class="text-base text-gray-600 mt-3">Discreet and secure internal tracking for enhanced theft prevention.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-separator">
-
-  <section class="py-24 bg-[#2B5669] text-white animate-on-scroll" id="pricing">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-16">Our Flexible Pricing Plans</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 animate-stagger">
-        <div class="bg-white text-[#2B5669] rounded-xl p-10 shadow-lg card-hover-effect">
-          <h3 class="text-4xl font-bold mb-4">Small-Scale Plan</h3>
-          <p class="text-5xl font-bold mb-3">R350<span class="text-2xl font-normal">/month</span></p>
-          <p class="text-base mb-6 text-gray-600">Installation Fee: R1,100</p>
-          <ul class="list-none text-xl text-left space-y-4 mt-8">
-            <li><i class="fas fa-check text-green-500 mr-4"></i> 4 Ear Tags</li>
-            <li><i class="fas fa-check text-green-500 mr-4"></i> 10 Microchips</li>
-            <li><i class="fas fa-times text-red-500 mr-4"></i> Weather Updates</li>
-            <li><i class="fas fa-times text-red-500 mr-4"></i> Health Monitoring</li>
-          </ul>
-          <button class="mt-10 bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-lg" aria-label="Choose Small-Scale Plan">
-            Choose Plan
-          </button>
-        </div>
-        <div class="bg-white text-[#2B5669] rounded-xl p-10 shadow-lg card-hover-effect">
-          <h3 class="text-4xl font-bold mb-4">Large-Scale Plan</h3>
-          <p class="text-5xl font-bold mb-3">R1,700<span class="text-2xl font-normal">/month</span></p>
-          <p class="text-base mb-6 text-gray-600">Installation Fee: R10,000</p>
-          <ul class="list-none text-xl text-left space-y-4 mt-8">
-            <li><i class="fas fa-check text-green-500 mr-4"></i> 40 Ear Tags</li>
-            <li><i class="fas fa-check text-green-500 mr-4"></i> 50 Microchips</li>
-            <li><i class="fas fa-check text-green-500 mr-4"></i> Weather Updates</li>
-            <li><i class="fas fa-check text-green-500 mr-4"></i> Health Monitoring</li>
-          </ul>
-          <button class="mt-10 bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-lg" aria-label="Choose Large-Scale Plan">
-            Choose Plan
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-separator">
-
-    <!-- FAQ Section -->
-     <section id="faq-section" class="py-24 bg-[#2B5669] text-white animate-on-scroll">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-
-    <div class="swiper faqSwiper">
-      <div class="swiper-wrapper">
-
-        <!-- Slide 1 -->
-        <div class="swiper-slide flex justify-center space-x-6">
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">Do I need internet to use HerdTrace?</h3>
-            <p>HerdTrace sends SMS alerts to farmers who do not have smartphones, helping them stay updated without needing internet access.</p>
-          </div>
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">What animals can I track?</h3>
-            <p>You can track cows, sheep, and goats. We’re expanding to more animals soon.</p>
-          </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="swiper-slide flex justify-center space-x-6">
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">How does theft detection work?</h3>
-            <p>Using GPS and motion sensors, the system alerts you if livestock moves suspiciously.</p>
-          </div>
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">Can I register multiple farms?</h3>
-            <p>Yes! HerdTrace allows you to manage several farms and herds in one dashboard.</p>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="swiper-slide flex justify-center space-x-6">
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">How much does HerdTrace cost?</h3>
-            <p>There’s a one-time installation fee and a monthly plan based on your herd size.</p>
-          </div>
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">Is it available in rural areas?</h3>
-            <p>Yes. HerdTrace was designed specifically for rural South African farms, with SMS alerts for remote farmers.</p>
-          </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="swiper-slide flex justify-center space-x-6">
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">What kind of support does HerdTrace offer?</h3>
-            <p>We offer support via phone, SMS, and WhatsApp. Our team helps you with setup, tracking, and any questions — especially for rural farmers.</p>
-          </div>
-          <div class="bg-white text-[#2B5669] p-6 rounded-xl shadow-lg w-full max-w-md">
-            <h3 class="text-xl font-semibold mb-2">Does HerdTrace work on both smartphones and basic phones?</h3>
-            <p>Yes. The HerdTrace app works on smartphones, and we also send SMS alerts for farmers without smartphones — so no one is left out.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Navigation Buttons -->
-      <div class="flex justify-center mt-8 space-x-4">
-        <div class="swiper-button-prev !text-white !bg-[#1F3F4C] !rounded-full !w-10 !h-10"></div>
-        <div class="swiper-button-next !text-white !bg-[#1F3F4C] !rounded-full !w-10 !h-10"></div>
-      </div>
-    </div>
-  </div>
-</section>
-         
-  <hr class="section-separator">
-
-  <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="contact">
-    <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-12">Join Our Waiting List Now!</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="relative w-full overflow-hidden rounded-xl shadow-lg square-aspect-ratio">
-          <img src="images/sheeps3.jpeg" alt="Sheep on a farm" class="contact-slide-image active">
-          <img src="images/cattle.jpg" alt="Another sheep on a farm" class="contact-slide-image">
-          <img src="images/goats.jpg" alt="More sheep on a farm" class="contact-slide-image">
-          <img src="images/cow_&_2_calves.jpg" alt="Cow and two calves" class="contact-slide-image">
-          <img src="images/goats_2.jpg" alt="A cow in a field" class="contact-slide-image">
-        </div>
-        <form class="bg-white rounded-xl shadow-lg square-aspect-ratio" id="contact-form">
-          <div class="form-content-wrapper">
-            <input type="text" placeholder="Name" id="contact-name" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Name">
-            <input type="text" placeholder="Surname" id="contact-surname" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Surname">
-            <input type="tel" placeholder="Phone Number" id="contact-phone" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Phone Number">
-            <input type="email" placeholder="Email Address" id="contact-email" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Email Address">
-            <button type="submit" class="bg-[#f39c12] text-white font-bold py-4 px-10 rounded-md shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-xl w-full" aria-label="Send your contact information">Send</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-separator" data-permanent-hr>
-
-  <section class="py-24 bg-white animate-on-scroll" id="partners-section">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Trusted Partners</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 animate-stagger">
-        <div class="partner-card-flip">
-          <div class="partner-card-inner">
-            <div class="partner-card-front">
-              <img src="images/deviare_logo.webp" class="partner-logo mb-4" alt="Deviare Logo">
-              <h3 class="font-semibold text-xl text-[#2B5669]">Deviare</h3>
-            </div>
-            <div class="partner-card-back">
-              <p class="text-lg">Tech skills, business support & digital growth powered by Deviare.</p>
-            </div>
-          </div>
-        </div>
-        <div class="partner-card-flip">
-          <div class="partner-card-inner">
-            <div class="partner-card-front">
-              <img src="images/liquidtelecomsa_logo.png" class="partner-logo mb-4" alt="Liquid Logo">
-              <h3 class="font-semibold text-xl text-[#2B5669]">Liquid Intelligent Technologies</h3>
-            </div>
-            <div class="partner-card-back">
-              <p class="text-lg">Connectivity and innovation championed by Liquid Intelligent Technologies.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="bg-[#2B5669] text-white py-10 text-center">
+    <footer class="bg-[#2B5669] text-white py-10 text-center">
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap justify-center md:justify-between items-center mb-6">
         <a href="#home" class="flex items-center space-x-4 mb-4 md:mb-0">
