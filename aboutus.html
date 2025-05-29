@@ -47,81 +47,73 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    .hero-slide-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 1;
-      transition: opacity 1.5s ease-in-out;
-      z-index: 1;
-    }
-    .hero-slide-image.active {
-      opacity: 1;
-      z-index: 2;
-    }
-    .hero-overlay {
-      position: relative;
-      z-index: 2;
-    }
+    /* Hero Section */
+.hero {
+    background-image: url("images/sheeps3.jpeg"); 
+    background-size: contain;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    color: #fafee6;
+    margin-top: -10px;
+}
 
-    .faq-item {
-      background-color: white;
-      color: #2B5669;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
-      border: 2px solid transparent;
-    }
-    .faq-item:hover {
-        background-color: #f8f8f8;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-    .faq-item.active {
-        border-color: #f39c12;
-        background-color: #e8f0f3;
-    }
-    .faq-toggle {
-      padding: 20px 30px;
-      font-weight: bold;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      text-align: left;
-      border: none;
-      background: none;
-      color: #2B5669;
-      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-    .faq-toggle:hover {
-      background-color: #f0f0f0;
-      color: #f39c12;
-    }
-    .faq-toggle svg {
-      transition: transform 0.3s ease-in-out;
-    }
-    .faq-toggle[aria-expanded="true"] svg {
-      transform: rotate(180deg);
-    }
-    .faq-content {
-      padding: 0px 30px;
-      color: #555;
-      font-size: 1.1rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-    }
-    .faq-content.open {
-      max-height: 500px;
-      padding: 10px 30px 20px;
-    }
+.hero-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
 
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.hero-text p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+.hero-description {
+    margin-top: 90px; 
+}
+
+
+/* Hero Button Styling */
+.hero-btn {
+    margin-top: 70px; /* space below the description */
+}
+
+.hero-btn .btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    background-color: #f39c12;
+    color: #fff;
+    border: 2px solid #f39c12;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-btn .btn:hover {
+    background-color: #f39c12;
+    border-color: #f39c12;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
     .animate-on-scroll {
       opacity: 0;
@@ -389,16 +381,16 @@
 
   <header class="bg-[#2B5669] text-white fixed w-full z-50 shadow-lg">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#home" class="flex items-center space-x-4">
+      <a href="index.html" class="flex items-center space-x-4">
         <img src="images/logo.png" alt="HerdTrace Logo" class="h-14 md:h-16">
         <span class="text-3xl md:text-4xl font-semibold">HerdTrace</span>
       </a>
       <nav class="space-x-6 hidden md:block">
         <a href="index.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
-        <a href="#about-intro" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
+        <a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
         <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
         <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
-        <a href="#contact" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Contact</a>
+        <a href="support.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Support</a>
       </nav>
       <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Open mobile menu">
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -408,27 +400,28 @@
       <button id="close-mobile-menu" class="absolute top-4 right-4 text-white focus:outline-none" aria-label="Close mobile menu">
         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
-      <a href="#home" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
-      <a href="#about-intro" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
+      <a href="index.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+      <a href="aboutus.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
       <a href="#features" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
       <a href="#pricing" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Pricing</a>
-      <a href="#contact" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+      <a href="support.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Support</a>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="h-screen relative pt-20 overflow-hidden flex flex-col items-center justify-center text-center text-white" id="home">
-    <img src="images/sheeps3.jpeg" alt="Livestock on a farm" class="hero-slide-image active">
-
-    <div class="hero-overlay flex flex-col items-center justify-center text-white text-center h-full px-4">
-    <h1 class="text-4xl md:text-6xl font-bold mb-6">Welcome to HerdTrace</h1>
-    <p class="text-lg md:text-2xl mb-6">Transforming livestock management with technology</p>
-    <a href="#our-story" class="text-[#f39c12] font-semibold underline text-lg hover:text-yellow-500 transition">
-      Learn more about our journey
-    </a>
-  </div>
-    </div>
-  </section>
+    <section class="hero">
+        <div class="hero-text">
+            <div class="hero-title" data-aos="fade-up" data-aos-duration="1000">
+                <h1>Welcome to HerdTrace</h1>
+            </div>
+            <div class="hero-description" data-aos="fade-up" data-aos-duration="1500">
+                <p>Transforming livestock management with technology</p>
+            </div>
+            <div class="hero-btn" data-aos="fade-up" data-aos-duration="2000">
+                <a href="#our-story" id="learn-more" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </section>
 
   <section class="py-24 bg-[#FAFEE6] animate-on-scroll" id="our-story">
     <div class="max-w-6xl mx-auto px-6 text-center">
@@ -527,35 +520,68 @@
       <div class="mt-16">
         <h3 class="text-3xl font-semibold text-[#2B5669] mb-6">Join HerdTrace Today</h3>
         <p class="text-lg leading-relaxed mb-8 max-w-3xl mx-auto">Ready to take your livestock management to the next level? Join us today and start securing your herd.</p>
-        <button class="bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-lg" aria-label="Sign up for HerdTrace now">
-          Contact Us
-        </button>
+        <a href="index.html#contact" class="inline-block bg-[#f39c12] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-300 ease-in-out text-lg" aria-label="Go to the Contact Us page">
+           Contact Us
+        </a>
       </div>
     </div>
   </section>
-    <footer class="bg-[#2B5669] text-white py-10 text-center">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-wrap justify-center md:justify-between items-center mb-6">
-        <a href="#home" class="flex items-center space-x-4 mb-4 md:mb-0">
-          <img src="images/logo.png" alt="HerdTrace Logo" class="h-12">
-          <span class="text-2xl font-semibold">HerdTrace</span>
+  
+  <footer class="bg-[#2B5669] text-white py-10">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-start text-left gap-10">
+
+      <!-- Logo -->
+      <div class="mb-8 md:mb-0">
+        <a href="index.html" class="block">
+          <img src="images/logo.png" alt="HerdTrace Logo" class="h-30 w-80">
         </a>
-        <nav class="flex flex-wrap justify-center space-x-6 md:space-x-8 text-lg">
-          <a href="#home" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
-          <a href="#about-intro" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
-          <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
-          <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
-          <a href="#contact" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Contact</a>
-        </nav>
       </div>
-      <p class="text-base mb-4">&copy; 2025 HerdTrace. All rights reserved.</p>
-      <div class="flex justify-center space-x-8 mt-4">
-        <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-gray-300 text-3xl transition duration-0.3s ease-in-out" aria-label="Visit us on Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-gray-300 text-3xl transition duration-0.3s ease-in-out" aria-label="Connect with us on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:herdtrace@gmail.com" class="hover:text-gray-300 text-3xl transition duration-0.3s ease-in-out" aria-label="Send us an email"><i class="fas fa-envelope"></i></a>
+      
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2 text-base">
+          <li><a href="index.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a></li>
+          <li><a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a></li>
+          <li><a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a></li>
+          <li><a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a></li>
+          <li><a href="support.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Support</a></li>
+        </ul>   
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Get in Touch</h3>
+        <ul class="space-y-2 text-base">
+          <li>
+            <i class="fas fa-phone mr-2"></i>
+            <span>+27832109972</span>
+          </li>
+          <li>
+            <i class="fas fa-envelope mr-2"></i>
+            <a href="mailto:info@herdtrace.co.za" class="hover:underline hover:text-yellow-300">info@herdtrace.co.za</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+        <div class="flex space-x-4 text-2xl">
+          <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-yellow-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-yellow-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:info@herdtrace.co.za" class="hover:text-yellow-300" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
       </div>
     </div>
-  </footer>
+
+    <!-- Bottom copyright -->
+    <div class="mt-10 text-center text-sm text-gray-200">
+      &copy; 2025 HerdTrace. All rights reserved.
+    </div>
+  </div>
+</footer>
 
   <div id="team-member-modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-member-name">
     <div id="team-member-modal-content" class="modal-content text-center">
