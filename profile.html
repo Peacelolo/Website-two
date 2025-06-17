@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile | HerdTrace</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #fafee6;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#FAFEE6]">
+
+  <!-- Header / Navbar -->
+  <header class="bg-[#2B5669] text-white fixed w-full z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-4">
+        <img src="images/logo.png" alt="HerdTrace Logo" class="h-14 md:h-16" />
+        <span class="text-3xl md:text-4xl font-semibold">HerdTrace</span>
+      </a>
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="index.html" class="hover:text-yellow-300 font-medium">Home</a>
+        <a href="dashboard.html" class="hover:text-yellow-300 font-medium">Dashboard</a>
+        <a href="profile.html" class="hover:text-yellow-300 font-medium">Profile</a>
+        <a href="support.html" class="hover:text-yellow-300 font-medium">Support</a>
+        <button
+          id="notifBtn"
+          class="relative focus:outline-none hover:text-yellow-300"
+          aria-label="Notifications"
+        >
+          <i class="fas fa-bell fa-lg"></i>
+          <span
+            id="notifBadge"
+            class="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-1.5"
+            >3</span
+          >
+        </button>
+        <div
+          id="notifDropdown"
+          class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black"
+        >
+          <div class="p-4 border-b font-semibold">Notifications</div>
+          <ul>
+            <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+              Livestock health alert for Animal ID #123
+            </li>
+            <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+              Weather warning: Heavy rain expected tomorrow
+            </li>
+            <li class="p-3 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+              New support message from admin
+            </li>
+          </ul>
+          <div class="text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+            See all notifications
+          </div>
+        </div>
+      </nav>
+      <!-- Mobile menu button placeholder -->
+      <button
+        id="mobileMenuBtn"
+        class="md:hidden focus:outline-none text-white"
+        aria-label="Open mobile menu"
+      >
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main layout with sidebar and content -->
+  <div class="flex flex-1 pt-20 min-h-[calc(100vh-5rem)]">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#1F3F4C] text-white p-6 flex-shrink-0 flex flex-col">
+      <h4 class="text-xl font-bold mb-4">🐄 HerdTrace</h4>
+      <nav class="flex flex-col space-y-3 flex-grow">
+        <a href="dashboard.html" class="hover:text-yellow-300 flex items-center">
+          <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+        </a>
+        <a href="registerlivestock.html" class="hover:text-yellow-300 flex items-center">
+          <i class="fas fa-plus-square mr-2"></i> Register Livestock
+        </a>
+        <a href="track.html" class="hover:text-yellow-300 flex items-center">
+          <i class="fas fa-map-marker-alt mr-2"></i> Track
+        </a>
+        <a href="health.html" class="hover:text-yellow-300 flex items-center">
+          <i class="fas fa-heartbeat mr-2"></i> Health
+        </a>
+        <a href="weather.html" class="hover:text-yellow-300 flex items-center">
+          <i class="fas fa-cloud-sun mr-2"></i> Weather
+        </a>        
+        
+      <button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
+        <span><i class="fas fa-user mr-2"></i> Account</span>
+        <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
+      </button>
+      <div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
+        <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
+        <a href="#" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
+        <div class="flex items-center justify-between pr-2">
+          <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
+          <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
+          </label>
+        </div>
+        <a href="#" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
+        <a href="#" class="text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</a>
+      </div>
+        <a href="#" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto flex items-center">
+          <i class="fas fa-sign-out-alt mr-2"></i> Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Profile content -->
+    <main class="flex-1 p-10 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-8">Edit Profile</h2>
+      <form id="profileForm" class="space-y-6">
+        <div>
+          <label for="fullName" class="block mb-2 font-semibold text-gray-700">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          />
+        </div>
+        <div>
+          <label for="businessName" class="block mb-2 font-semibold text-gray-700">Business Name</label>
+          <input
+            type="text"
+            id="businessName"
+            name="businessName"
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          />
+        </div>
+        <div>
+          <label for="address" class="block mb-2 font-semibold text-gray-700">Farm Address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          />
+        </div>
+        <div>
+          <label for="contact" class="block mb-2 font-semibold text-gray-700">Contact Number</label>
+          <input
+            type="tel"
+            id="contact"
+            name="contact"
+            required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          />
+        </div>
+        <div>
+          <label for="livestockType" class="block mb-2 font-semibold text-gray-700">Livestock Type</label>
+          <select
+            id="livestockType"
+            name="livestockType"
+            required
+            class="w-full border border-gray-300 rounded px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          >
+            <option value="" disabled selected>Select livestock type</option>
+            <option value="Cows">Cows</option>
+            <option value="Sheep">Sheep</option>
+            <option value="Goats">Goats</option>
+          </select>
+        </div>
+        <div>
+          <label for="numberOfAnimals" class="block mb-2 font-semibold text-gray-700">Number of Animals</label>
+          <input
+            type="number"
+            id="numberOfAnimals"
+            name="numberOfAnimals"
+            min="1"
+            required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          />
+        </div>
+        <div class="text-center">
+          <button
+            type="submit"
+            class="bg-[#2B5669] hover:bg-yellow-300 text-white font-semibold rounded px-8 py-3 transition-colors duration-300"
+          >
+            Save Profile
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#2B5669] text-white py-10 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+      <div class="mb-4">
+        <a
+          href="https://www.facebook.com/profile.php?id=61573172663345"
+          target="_blank"
+          class="mx-3 hover:text-yellow-300"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all"
+          target="_blank"
+          class="mx-3 hover:text-yellow-300"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+        <a href="mailto:info@herdtrace.co.za" class="mx-3 hover:text-yellow-300"
+          ><i class="fas fa-envelope"></i
+        ></a>
+      </div>
+      <p>&copy; 2025 HerdTrace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Logout function
+    function logout() {
+      alert("You have been logged out.");
+      // Add redirect or logout logic here
+    }
+
+    // Notification dropdown toggle
+    const notifBtn = document.getElementById("notifBtn");
+    const notifDropdown = document.getElementById("notifDropdown");
+
+    notifBtn.addEventListener("click", () => {
+      notifDropdown.classList.toggle("hidden");
+    });
+
+    // Close dropdown when clicking outside
+    window.addEventListener("click", (e) => {
+      if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
+        notifDropdown.classList.add("hidden");
+      }
+    });
+
+  function toggleAccountMenu() {
+    const submenu = document.getElementById("accountSubMenu");
+    const arrow = document.getElementById("accountArrow");
+    submenu.classList.toggle("hidden");
+    arrow.classList.toggle("rotate-90");
+  }
+  </script>
+</body>
+</html>

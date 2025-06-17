@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Livestock | HerdTrace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #fafee6;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+    .pin {
+      position: absolute;
+      transform: translate(-50%, -100%);
+      font-weight: bold;
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.875rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    .pin.red {
+      background-color: #dc3545;
+      border: 2px solid #a1202a;
+    }
+    .pin.blue {
+      background-color: #0d6efd;
+      border: 2px solid #084bcc;
+    }
+    #map-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #7ec850 40%, #a5d152 40%, #a5d152 60%, #f5f7a9 60%);
+  box-shadow: inset 0 0 15px #557733;
+  margin-bottom: 1.5rem;
+}
+#map-container::before {
+  content: "";
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  width: 80%;
+  height: 20%;
+  background: repeating-linear-gradient(
+    45deg,
+    #d9d9d9,
+    #d9d9d9 10px,
+    #c2c2c2 10px,
+    #c2c2c2 20px
+  );
+  border-radius: 30px;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 1;
+}
+</style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#FAFEE6]">
+  <!-- Header -->
+  <header class="bg-[#2B5669] text-white fixed w-full z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-4">
+        <img src="images/logo.png" alt="HerdTrace Logo" class="h-14 md:h-16" />
+        <span class="text-3xl md:text-4xl font-semibold">HerdTrace</span>
+      </a>
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="index.html" class="hover:text-yellow-300 font-medium">Home</a>
+        <a href="dashboard.html" class="hover:text-yellow-300 font-medium">Dashboard</a>
+        <a href="profile.html" class="hover:text-yellow-300 font-medium">Profile</a>
+        <a href="support.html" class="hover:text-yellow-300 font-medium">Support</a>
+        <div class="relative">
+          <button id="notifBtn" class="relative focus:outline-none hover:text-yellow-300" aria-label="Notifications">
+            <i class="fas fa-bell fa-lg"></i>
+            <span id="notifBadge" class="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-1.5">3</span>
+          </button>
+          <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black">
+            <div class="p-4 border-b font-semibold">Notifications</div>
+            <ul>
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer">Livestock health alert for Animal ID #123</li>
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer">Weather warning: Heavy rain expected tomorrow</li>
+              <li class="p-3 hover:bg-gray-100 cursor-pointer">New support message from admin</li>
+            </ul>
+            <div class="text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer">See all notifications</div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="flex flex-1 pt-20 min-h-[calc(100vh-5rem)]">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#1F3F4C] text-white p-6 flex-shrink-0 flex flex-col">
+      <h4 class="text-xl font-bold mb-4">🐄 HerdTrace</h4>
+      <nav class="flex flex-col space-y-3 flex-grow">
+        <a href="dashboard.html" class="hover:text-yellow-300"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
+        <a href="registerlivestock.html" class="hover:text-yellow-300"><i class="fas fa-plus-square mr-2"></i> Register Livestock</a>
+        <a href="track.html" class="hover:text-yellow-300 font-bold"><i class="fas fa-map-marker-alt mr-2"></i> Track</a>
+        <a href="health.html" class="hover:text-yellow-300"><i class="fas fa-heartbeat mr-2"></i> Health</a>
+        <a href="weather.html" class="hover:text-yellow-300"><i class="fas fa-cloud-sun mr-2"></i> Weather</a>
+        
+      <button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
+        <span><i class="fas fa-user mr-2"></i> Account</span>
+        <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
+      </button>
+      <div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
+        <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
+        <a href="#" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
+        <div class="flex items-center justify-between pr-2">
+          <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
+          <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
+          </label>
+        </div>
+        <a href="#" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
+        <a href="#" class="text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</a>
+      </div>
+        <a href="#" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <main class="flex-1 p-10">
+      <h1 class="text-4xl font-bold text-[#2B5669] mb-6">Track Livestock</h1>
+
+      <!-- Search bar and selected animal info -->
+      <div class="flex items-center space-x-4 mb-4">
+        <input id="searchInput" type="text" placeholder="Search by tag number..." class="flex-1 max-w-xs border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        <button onclick="triggerSearch()" class="bg-[#2B5669] text-white px-4 py-2 rounded hover:bg-[#24495b]">Search</button>
+        <div class="ml-6">
+          <p class="text-[#2B5669] font-semibold">Animal ID: <span id="animal-id"></span></p>
+          <p class="text-[#2B5669] font-semibold">GPS Coordinates: <span id="animal-location"></span></p>
+          <p class="text-[#2B5669] font-semibold">Animal Type: <span id="animal-type"></span></p>
+        </div>
+      </div>
+
+      <!-- Map container -->
+      <div id="map-container" class="relative w-full h-[500px] rounded-xl border overflow-hidden">
+        <!-- Pins will be placed here -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#2B5669] text-white py-10">
+    <div class="container mx-auto px-4 text-center">
+      <div class="mb-4">
+        <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="mx-3 hover:text-yellow-300"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="mx-3 hover:text-yellow-300"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:info@herdtrace.co.za" class="mx-3 hover:text-yellow-300"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>&copy; 2025 HerdTrace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const animals = [
+      { id: "HT-001", x: 15, y: 30, color: "red", coords: "-31.589, 28.774" },
+      { id: "HT-002", x: 25, y: 55, color: "red", coords: "-31.590, 28.772" },
+      { id: "HT-003", x: 40, y: 20, color: "red", coords: "-31.588, 28.770" },
+      { id: "HT-004", x: 70, y: 35, color: "red", coords: "-31.591, 28.776" },
+      { id: "HT-005", x: 85, y: 60, color: "red", coords: "-31.592, 28.778" },
+      { id: "HT-006", x: 20, y: 70, color: "blue", coords: "-31.593, 28.779" },
+      { id: "HT-007", x: 35, y: 65, color: "blue", coords: "-31.594, 28.780" },
+      { id: "HT-008", x: 55, y: 80, color: "blue", coords: "-31.595, 28.781" },
+      { id: "HT-009", x: 75, y: 75, color: "blue", coords: "-31.596, 28.782" },
+      { id: "HT-010", x: 80, y: 30, color: "blue", coords: "-31.597, 28.783" },
+    ];
+
+      const map = document.getElementById("map-container");
+      const animalIdElem = document.getElementById("animal-id");
+      const locationElem = document.getElementById("animal-location");
+      const animalTypeElem = document.getElementById("animal-type");
+
+      function getType(color) {
+        return color === "red" ? "Sheep" : "Cattle";
+      }
+
+    function loadPins(filter = "") {
+    map.innerHTML = "";
+    const filtered = animals.filter(animal => animal.id.includes(filter.toUpperCase()));
+    filtered.forEach(animal => {
+      const pin = document.createElement("div");
+      pin.className = `pin ${animal.color}`;
+      pin.style.left = `${animal.x}%`;
+      pin.style.top = `${animal.y}%`;
+      pin.textContent = animal.id;
+      pin.addEventListener("click", () => {
+        animalIdElem.textContent = animal.id;
+        locationElem.textContent = animal.coords;
+        animalTypeElem.textContent = getType(animal.color);
+      });
+      map.appendChild(pin);
+    });
+    if (filter && filtered.length) {
+      animalIdElem.textContent = filtered[0].id;
+      locationElem.textContent = filtered[0].coords;
+      animalTypeElem.textContent = getType(filtered[0].color);
+    } else if (!filter) {
+      animalIdElem.textContent = "";
+      locationElem.textContent = "";
+      animalTypeElem.textContent = "";
+    }
+    }
+
+    function triggerSearch() {
+      const query = document.getElementById("searchInput").value.trim();
+      loadPins(query);
+    }
+
+    document.getElementById("searchInput").addEventListener("input", e => {
+      if (!e.target.value.trim()) {
+        loadPins("");
+      }
+    });
+
+    document.getElementById("searchInput").addEventListener("keypress", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        triggerSearch();
+      }
+    });
+
+    window.onload = () => loadPins("");
+
+    function logout() {
+      sessionStorage.removeItem("loggedIn");
+      window.location.href = "HerdWebApp.html";
+    }
+
+  function toggleAccountMenu() {
+    const submenu = document.getElementById("accountSubMenu");
+    const arrow = document.getElementById("accountArrow");
+    submenu.classList.toggle("hidden");
+    arrow.classList.toggle("rotate-90");
+  }
+  </script>
+</body>
+</html>

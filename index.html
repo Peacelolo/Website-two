@@ -399,6 +399,7 @@
         <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
         <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
         <a href="support.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Support</a>
+        <a href="login.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Login</a>
       </nav>
       <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Open mobile menu">
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -413,6 +414,7 @@
       <a href="#features" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
       <a href="#pricing" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Pricing</a>
       <a href="support.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Support</a>
+      <a href="login.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Login</a>
     </div>
   </header>
 
@@ -422,7 +424,7 @@
     <img src="images/cattle.jpg" alt="Cattle in a field" class="hero-slide-image">
 
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white hero-overlay">
-      <h1 class="text-5xl md:text-7xl font-bold uppercase drop-shadow-lg animate-on-scroll">HerdTrace</h1>
+      <h1 class="text-5xl md:text-7xl font-bold drop-shadow-lg animate-on-scroll">HerdTrace</h1>
       <p class="text-xl md:text-3xl mt-4 drop-shadow-md animate-on-scroll" style="transition-delay: 0.2s;">Track every step. Secure every herd.</p>
       <div id="hero-message-slider" class="mt-8 text-center animate-on-scroll text-lg md:text-xl h-8 relative overflow-hidden">
        <p class="transition-opacity duration-700 ease-in-out opacity-100">Get started with HerdTrace and secure your livestock.</p>
@@ -484,7 +486,7 @@
         <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
           <div class="text-6xl mb-6 text-[#f39c12]">🚨</div>
           <h3 class="font-semibold text-2xl text-white mb-3">Theft Alerts</h3>
-          <p class="text-base text-gray-300">Be notified instantly through SMS or app alerts if something’s wrong.</p>
+          <p class="text-base text-gray-300">Be notified instantly through SMS or app alerts in the event of suspicious activities.</p>
         </div>
         <div class="bg-[#1F3F4C] p-8 rounded-xl shadow-lg card-hover-effect">
           <div class="text-6xl mb-6 text-[#f39c12]">🩺</div>
@@ -687,15 +689,54 @@
           <img src="images/cow_&_2_calves.jpg" alt="Cow and two calves" class="contact-slide-image">
           <img src="images/goats_2.jpg" alt="A cow in a field" class="contact-slide-image">
         </div>
-        <form class="bg-white rounded-xl shadow-lg square-aspect-ratio" id="contact-form">
-          <div class="form-content-wrapper">
-            <input type="text" placeholder="Name" id="contact-name" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Name">
-            <input type="text" placeholder="Surname" id="contact-surname" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Surname">
-            <input type="tel" placeholder="Phone Number" id="contact-phone" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Phone Number">
-            <input type="email" placeholder="Email Address" id="contact-email" class="p-4 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition duration-0.2s ease-in-out text-lg w-full hover:border-[#2B5669]" required aria-label="Your Email Address">
-            <button type="submit" class="bg-[#f39c12] text-white font-bold py-4 px-10 rounded-md shadow-lg hover:bg-yellow-600 transform hover:scale-105 transition duration-0.3s ease-in-out text-xl w-full" aria-label="Send your contact information">Send</button>
-          </div>
-        </form>
+        
+        <div class="flex items-center justify-center w-full flex-col">
+          <form method="POST" action="waiting_list.php" class="modern-contact-form w-full max-w-md bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-10 border border-gray-200 relative overflow-hidden" id="contact" aria-labelledby="contact-form-title">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(circle at 80% 10%, #f9e7c7 0%, transparent 70%), radial-gradient(circle at 10% 90%, #e6f6fa 0%, transparent 70%);"></div>
+  
+  <div class="flex flex-col items-center mb-6 relative z-10">
+    <div class="mb-2 text-4xl text-[#2B5669] drop-shadow-lg" aria-hidden="true">
+      <i class="fas fa-handshake"></i>
+    </div>
+    <h3 id="contact-form-title" class="text-2xl font-extrabold text-[#2B5669] mb-1 tracking-tight">Get in Touch</h3>
+    <div class="w-12 h-1 rounded-full bg-gradient-to-r from-[#f39c12] via-[#ffd700] to-[#2B5669] mb-2"></div>
+    <p class="text-gray-600 text-base mb-0 font-medium">Ready to partner with us? Fill in your details and we'll reach out!</p>
+  </div>
+
+  <div class="flex flex-col gap-5 relative z-10">
+    <div class="modern-input-group">
+      <span class="modern-input-icon"><i class="fas fa-user"></i></span>
+      <input type="text" name="name" placeholder="Name" id="contact-name" class="modern-input" required aria-label="Your Name">
+    </div>
+
+    <div class="modern-input-group">
+      <span class="modern-input-icon"><i class="fas fa-user"></i></span>
+      <input type="text" name="surname" placeholder="Surname" id="contact-surname" class="modern-input" required aria-label="Your Surname">
+    </div>
+
+    <div class="modern-input-group">
+      <span class="modern-input-icon"><i class="fas fa-phone"></i></span>
+      <input type="tel" name="phone" placeholder="Phone Number" id="contact-phone" class="modern-input" required aria-label="Your Phone Number">
+    </div>
+
+    <div class="modern-input-group">
+      <span class="modern-input-icon"><i class="fas fa-envelope"></i></span>
+      <input type="email" name="email" placeholder="Email Address" id="contact-email" class="modern-input" required aria-label="Your Email Address">
+    </div>
+
+    <button 
+      type="submit" 
+      class="modern-btn" 
+      style="background: linear-gradient(90deg, #f39c12 0%, #ffd700 100%) !important; color: #fff !important;" 
+      aria-label="Send your contact information"
+    >
+      Send
+    </button>
+  </div>
+</form>
+
+          <div id="contact-message" class="contact-message-area" style="width:100%;max-width:32rem;"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -761,7 +802,7 @@
         <ul class="space-y-2 text-base">
           <li>
             <i class="fas fa-phone mr-2"></i>
-            <span>+27832109972</span>
+            <span>+27637989619</span>
           </li>
           <li>
             <i class="fas fa-envelope mr-2"></i>
@@ -776,7 +817,6 @@
         <div class="flex space-x-4 text-2xl">
           <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-yellow-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-yellow-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:info@herdtrace.co.za" class="hover:text-yellow-300" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
@@ -810,7 +850,7 @@
       name: "Zusiphe Makeleni",
       title: "Co-founder & Head of Sales and Marketing",
       description: "Zusiphe is a dynamic marketing professional with a background in digital marketing, driving HerdTrace's market presence and customer engagement. Her innovative strategies help us connect with farmers and expand our reach across communities.",
-      image: "images/zusiphe.jpeg"
+      image: "images/zusiphe.jpg"
     },
     akhona: {
       name: "Akhona Dlala",
