@@ -176,54 +176,15 @@
         color: #4B5563;
     }
 
-    .partner-card-flip {
-        perspective: 1000px;
-        width: 100%;
-        height: 200px;
-        position: relative;
-        cursor: pointer;
-        border-radius: 12px;
-    }
-    .partner-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.6s ease-in-out;
-        transform-style: preserve-3d;
-        border-radius: 12px;
-    }
-    .partner-card-flip:hover .partner-card-inner {
-        transform: rotateY(180deg);
-    }
-    .partner-card-front, .partner-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        box-sizing: border-box;
-    }
-    .partner-card-front {
-        background-color: #f8f8f8;
-        color: #2B5669;
-    }
-    .partner-card-back {
-        background-color: #2B5669;
-        color: white;
-        transform: rotateY(180deg);
-    }
-    .partner-card-back p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
+    @keyframes scrollPartners {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-scroll-partners {
+  animation: scrollPartners 60s linear infinite;
+  white-space: nowrap;
+}
+
 
     .contact-slide-image {
       position: absolute;
@@ -434,7 +395,7 @@
        <p class="text-base mb-4">Ready to take your livestock management to the next level? Join us today and start securing your herd.</p>
   <div class="text-center">
     <a href="#contact" class="inline-block bg-[#f39c12] text-white font-semibold px-6 py-3 rounded-full hover:bg-yellow-600 transform hover:scale-105 transition" aria-label="Sign up now for HerdTrace">
-      Sign Up
+      Get In Touch
     </a>
   </div>
 </div>
@@ -742,36 +703,26 @@
   </section>
 
   <hr class="section-separator" data-permanent-hr>
+<section class="py-24 bg-white animate-on-scroll" id="partners-section">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Trusted Partners</h2>
 
-  <section class="py-24 bg-white animate-on-scroll" id="partners-section">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Trusted Partners</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 animate-stagger">
-        <div class="partner-card-flip">
-          <div class="partner-card-inner">
-            <div class="partner-card-front">
-              <img src="images/deviare_logo.webp" class="partner-logo mb-4" alt="Deviare Logo">
-              <h3 class="font-semibold text-xl text-[#2B5669]">Deviare</h3>
-            </div>
-            <div class="partner-card-back">
-              <p class="text-lg">Tech skills, business support & digital growth powered by Deviare.</p>
-            </div>
-          </div>
-        </div>
-        <div class="partner-card-flip">
-          <div class="partner-card-inner">
-            <div class="partner-card-front">
-              <img src="images/liquidtelecomsa_logo.png" class="partner-logo mb-4" alt="Liquid Logo">
-              <h3 class="font-semibold text-xl text-[#2B5669]">Liquid Intelligent Technologies</h3>
-            </div>
-            <div class="partner-card-back">
-              <p class="text-lg">Connectivity and innovation championed by Liquid Intelligent Technologies.</p>
-            </div>
-          </div>
-        </div>
+    <!-- Scrolling Logo Slider -->
+    <div class="overflow-hidden relative">
+      <div class="flex gap-12 animate-scroll-partners items-center">
+        <img src="images/deviare_logo.webp" alt="Deviare" class="h-16 md:h-20 object-contain transition duration-300">
+        <img src="images/liquidtelecomsa_logo.png" alt="Liquid" class="h-16 md:h-20 object-contain transition duration-300">
+        <img src="images/agriculture.jpeg" alt="Agriculture Dept" class="h-70 md:h-80 object-contain transition duration-300">
+        <img src="images/saps.jpeg" alt="SAPS" class="h-40 md:h-50 object-contain transition duration-300">
+        <img src="images/cpf.jpg" alt="CPF" class="h-16 md:h-20 object-contain transition duration-300">
+        <img src="images/ecgf.jpeg" alt="ECGF" class="h-16 md:h-20 object-contain transition duration-300">
+        <img src="images/imvelo.png" alt="Imvelo" class="h-16 md:h-20 object-contain transition duration-300">
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<hr class="section-separator" data-permanent-hr>
 
     <footer class="bg-[#2B5669] text-white py-10">
   <div class="container mx-auto px-4">
@@ -818,6 +769,7 @@
           <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-yellow-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-yellow-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
+        <div id="qrcode" class="flex justify-center mt-6"></div>
       </div>
     </div>
 
@@ -1216,7 +1168,17 @@
     }
   });
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://www.herdtrace.co.za",
+    width: 100,
+    height: 100,
+    colorDark : "#2B5669",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });
+</script>
 
 </body>
 </html>

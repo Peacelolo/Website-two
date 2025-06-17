@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support | HerdTrace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #fafee6;
+    }
+    h1, h2, h3 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-[#FAFEE6]">
+
+  <header class="bg-[#2B5669] text-white fixed w-full z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-4">
+        <img src="images/logo.png" alt="HerdTrace Logo" class="h-14 md:h-16" />
+        <span class="text-3xl md:text-4xl font-semibold">HerdTrace</span>
+      </a>
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="index.html" class="hover:text-yellow-300 font-medium">Home</a>
+        <a href="dashboard.html" class="hover:text-yellow-300 font-medium"
+          >Dashboard</a
+        >
+        <a href="profile.html" class="hover:text-yellow-300 font-medium">Profile</a>
+        <a href="supportplatform.html" class="hover:text-yellow-300 font-medium"
+          >Support</a
+        >
+        <!-- Notifications -->
+        <div class="relative">
+          <button
+            id="notifBtn"
+            class="relative focus:outline-none hover:text-yellow-300"
+            aria-label="Notifications"
+          >
+            <i class="fas fa-bell fa-lg"></i>
+            <span
+              id="notifBadge"
+              class="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-1.5"
+              >3</span
+            >
+          </button>
+
+          <!-- Dropdown -->
+          <div
+            id="notifDropdown"
+            class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black"
+          >
+            <div class="p-4 border-b font-semibold">Notifications</div>
+            <ul>
+              <li
+                class="p-3 border-b hover:bg-gray-100 cursor-pointer"
+                tabindex="0"
+                role="button"
+              >
+                Livestock health alert for Animal ID ht-004
+              </li>
+              <li
+                class="p-3 border-b hover:bg-gray-100 cursor-pointer"
+                tabindex="0"
+                role="button"
+              >
+                Weather warning: Heavy rain expected tomorrow
+              </li>
+              <li class="p-3 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+                New support message from admin
+              </li>
+            </ul>
+            <div
+              class="text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer"
+              tabindex="0"
+              role="button"
+            >
+              See all notifications
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- Mobile menu button placeholder (optional) -->
+      <button
+        id="mobileMenuBtn"
+        class="md:hidden focus:outline-none text-white"
+        aria-label="Open mobile menu"
+      >
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="py-16 px-6 md:px-12 bg-white text-gray-800">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+    
+    <!-- Left side: Text + Contact Info -->
+     <section class="bg-white py-16 px-6 md:px-12 text-gray-800 border border-gray-300 rounded-xl shadow-md">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-3xl font-bold text-[#2B5669] text-center mb-4">Customer Support</h3>
+
+    <form action="#" method="POST" class="space-y-6 bg-white shadow-lg rounded-xl p-8">
+      <!-- Name -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2B5669]" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2B5669]" />
+        </div>
+      </div>
+
+      <!-- Email & Phone -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="email">Email *</label>
+          <input type="email" id="email" name="email" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2B5669]" />
+        </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1" for="phone">Phone *</label>
+          <input type="tel" id="phone" name="phone" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2B5669]" />
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-1" for="message">Message / Questions *</label>
+        <textarea id="message" name="message" rows="5" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2B5669]"></textarea>
+      </div>
+   
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit" class="bg-[#f39c12] hover:bg-[#22404f] text-white font-semibold px-8 py-3 rounded-lg shadow-md transition duration-300 ease-in-out">
+           SUBMIT
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Right side: Contact Form -->
+     <section class="bg-white py-16 px-6 md:px-12 text-gray-800 border border-gray-300 rounded-xl shadow-md">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-[#2B5669] mb-4">Get Started with HerdTrace</h2>
+            <p class="text-lg mb-10 text-gray-700">
+                Discover how HerdTrace can help you stay one step ahead of theft and livestock health issues.
+            </p>
+
+    <div class="grid md:grid-cols-2 gap-10 text-left">
+      <!-- Phone -->
+      <div class="flex items-start space-x-4">
+        <div class="text-[#2B5669] text-2xl">
+          <i class="fas fa-phone-alt text-[#f39c12]"></i>
+        </div>
+        <div>
+          <h4 class="font-semibold text-[#2B5669]">Phone</h4>
+          <p class="text-gray-700">+27637989619</p>
+        </div>
+      </div>
+      
+      <!-- WhatsApp -->
+      <div class="flex items-start space-x-4">
+         <div class="text-[#2B5669] text-2xl">
+           <i class="fab fa-whatsapp text-[#25D366]"></i>
+         </div>
+         <div>
+          <h4 class="font-semibold text-[#2B5669]">WhatsApp</h4>
+          <p class="text-gray-700">+27637989619</p>
+         </div>
+     </div>
+
+
+      <!-- Email Admin -->
+      <div class="flex items-start space-x-4">
+        <div class="text-[#2B5669] text-2xl">
+          <i class="fas fa-envelope text-[#f39c12]"></i>
+            </div>
+        <div>
+              <h4 class="font-semibold text-[#2B5669]">Email</h4>
+              <p class="text-gray-700">info@herdtrace.co.za</p>
+            </div>
+          </div>
+
+          <!-- Address -->
+        <div class="flex items-start space-x-4">
+            <div class="text-[#2B5669] text-2xl">
+              <i class="fas fa-map-marker-alt text-[#f39c12]"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-[#2B5669]">Address</h4>
+              <p class="text-gray-700">49 Leeds Street Eastern Cape Mthatha</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+  <!-- Footer -->
+  <footer class="bg-[#2B5669] text-white py-10 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+      <div class="mb-4">
+        <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="mx-3 hover:text-yellow-300"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="mx-3 hover:text-yellow-300"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:info@herdtrace.co.za" class="mx-3 hover:text-yellow-300"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>&copy; 2025 HerdTrace. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

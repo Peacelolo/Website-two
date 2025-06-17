@@ -579,6 +579,7 @@
           <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-yellow-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-yellow-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
+        <div id="qrcode" class="flex justify-center mt-6"></div>
       </div>
     </div>
 
@@ -967,7 +968,16 @@
     }
   });
 </script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://www.herdtrace.co.za",
+    width: 100,
+    height: 100,
+    colorDark : "#2B5669",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });
+</script>
 </body>
 </html>
