@@ -175,7 +175,8 @@
     #features .card-hover-effect:hover p {
         color: #4B5563;
     }
-
+    
+    
     @keyframes scrollPartners {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
@@ -184,7 +185,6 @@
   animation: scrollPartners 60s linear infinite;
   white-space: nowrap;
 }
-
 
     .contact-slide-image {
       position: absolute;
@@ -356,9 +356,9 @@
       </a>
       <nav class="space-x-6 hidden md:block">
         <a href="index.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
-        <a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
         <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
         <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
+        <a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
         <a href="support.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Support</a>
         <a href="login.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Login</a>
       </nav>
@@ -371,9 +371,9 @@
         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
       <a href="#home" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
-      <a href="#about-intro" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
       <a href="#features" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
       <a href="#pricing" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Pricing</a>
+      <a href="about.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
       <a href="support.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Support</a>
       <a href="login.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Login</a>
     </div>
@@ -535,7 +535,11 @@
       <!-- Small-Scale Plan -->
       <div class="bg-white text-[#2B5669] rounded-xl p-10 shadow-lg card-hover-effect">
         <h3 class="text-4xl font-bold mb-4">Small-Scale Plan</h3>
-        <p class="text-5xl font-bold mb-3" style="color: #f39c12;">R350<span class="text-2xl font-normal">/month</span></p>
+        <p class="text-5xl font-bold mb-3">
+          <span class="text-base text-[#2B5669] align-baseline mr-1">from</span>
+          <span style="color: #f39c12;">R350</span>
+          <span class="text-2xl font-normal">/month</span>
+        </p>
         <p class="text-base mb-6 text-gray-600">Installation Fee: R1,100 (once-off)</p>
         <ul class="list-none text-xl text-left space-y-4 mt-8">
           <li><i class="fas fa-check text-green-500 mr-4"></i> 2 Ear Tags</li>
@@ -548,7 +552,11 @@
       <!-- Large-Scale Plan -->
       <div class="bg-white text-[#2B5669] rounded-xl p-10 shadow-lg card-hover-effect">
         <h3 class="text-4xl font-bold mb-4">Large-Scale Plan</h3>
-        <p class="text-5xl font-bold mb-3" style="color: #f39c12;">R2,500<span class="text-2xl font-normal">/month</span></p>
+        <p class="text-5xl font-bold mb-3">
+          <span class="text-base text-[#2B5669] align-baseline mr-1">from</span>
+          <span style="color: #f39c12;">R2,500</span>
+          <span class="text-2xl font-normal">/month</span>
+        </p>
         <p class="text-base mb-6 text-gray-600">Installation Fee: R10,000 (once-off)</p>
         <ul class="list-none text-xl text-left space-y-4 mt-8">
           <li><i class="fas fa-check text-green-500 mr-4"></i> 15 Ear Tags</li>
@@ -652,7 +660,7 @@
         </div>
         
         <div class="flex items-center justify-center w-full flex-col">
-          <form method="POST" action="waiting_list.php" class="modern-contact-form w-full max-w-md bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-10 border border-gray-200 relative overflow-hidden" id="contact" aria-labelledby="contact-form-title">
+            <form method="POST" action="waiting_list.php" class="modern-contact-form w-full max-w-md bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-10 border border-gray-200 relative overflow-hidden" id="contact" aria-labelledby="contact-form-title">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(circle at 80% 10%, #f9e7c7 0%, transparent 70%), radial-gradient(circle at 10% 90%, #e6f6fa 0%, transparent 70%);"></div>
   
   <div class="flex flex-col items-center mb-6 relative z-10">
@@ -690,34 +698,37 @@
       class="modern-btn" 
       style="background: linear-gradient(90deg, #f39c12 0%, #ffd700 100%) !important; color: #fff !important;" 
       aria-label="Send your contact information"
-    >
-      Send
-    </button>
-  </div>
-</form>
+            >
+              Send
+             </button>
+            </div>
+           </form>
 
-          <div id="contact-message" class="contact-message-area" style="width:100%;max-width:32rem;"></div>
+          <div id="messageBox" style="margin-top: 1rem; font-weight: bold;"></div>
         </div>
       </div>
     </div>
   </section>
 
   <hr class="section-separator" data-permanent-hr>
-<section class="py-24 bg-white animate-on-scroll" id="partners-section">
+
+  <section class="py-24 bg-white animate-on-scroll" id="partners-section">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-4xl md:text-5xl font-bold text-[#2B5669] mb-16">Our Trusted Partners</h2>
 
-    <!-- Scrolling Logo Slider -->
-    <div class="overflow-hidden relative">
-      <div class="flex gap-12 animate-scroll-partners items-center">
-        <img src="images/deviare_logo.webp" alt="Deviare" class="h-16 md:h-20 object-contain transition duration-300">
-        <img src="images/liquidtelecomsa_logo.png" alt="Liquid" class="h-16 md:h-20 object-contain transition duration-300">
-        <img src="images/agriculture.jpeg" alt="Agriculture Dept" class="h-70 md:h-80 object-contain transition duration-300">
-        <img src="images/saps.jpeg" alt="SAPS" class="h-40 md:h-50 object-contain transition duration-300">
-        <img src="images/cpf.jpg" alt="CPF" class="h-16 md:h-20 object-contain transition duration-300">
-        <img src="images/ecgf.jpeg" alt="ECGF" class="h-16 md:h-20 object-contain transition duration-300">
-        <img src="images/imvelo.png" alt="Imvelo" class="h-16 md:h-20 object-contain transition duration-300">
-      </div>
+    <!-- Logo Gallery in 2 Rows -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 items-center justify-center ">
+      <img src="images/liquidtelecomsa_logo.png" alt="Liquid" class="h-10 md:h-12 object-contain mx-auto transition duration-300">
+      <img src="images/deviare_logo.webp" alt="Deviare" class="h-16 md:h-18 object-contain mx-auto transition duration-300">
+      <img src="images/saps.jpeg" alt="SAPS" class="h-21 md:h-21 object-contain mx-auto transition duration-300">
+      
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 items-center justify-center">
+      <img src="images/agriculture.jpeg" alt="Agriculture Dept" class="h-80 md:h-60 object-contain mx-auto transition duration-300">
+      <img src="images/cpf.jpg" alt="CPF" class="h-70 md:h-60 object-contain mx-auto transition duration-300">
+      <img src="images/ecgf.jpeg" alt="ECGF" class="h-30 md:h-40 object-contain mx-auto transition duration-300">
+      <!--<img src="images/imvelo.png" alt="Imvelo" class="h-16 md:h-20 object-contain mx-auto transition duration-300">-->
     </div>
   </div>
 </section>
@@ -740,9 +751,9 @@
         <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
         <ul class="space-y-2 text-base">
           <li><a href="index.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a></li>
-          <li><a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a></li>
           <li><a href="index.html#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a></li>
           <li><a href="index.html#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a></li>
+          <li><a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a></li>
           <li><a href="support.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Support</a></li>
         </ul>   
       </div>
@@ -759,6 +770,11 @@
             <i class="fas fa-envelope mr-2"></i>
             <a href="mailto:info@herdtrace.co.za" class="hover:underline hover:text-yellow-300">info@herdtrace.co.za</a>
           </li>
+          <li class="flex flex-col items-start">
+            <i class="fab fa-whatsapp mr-2"></i>
+            <a href="https://wa.me/27637989619" target="_blank" class="hover:underline hover:text-yellow-300"> </a>
+            <div id="whatsapp-qrcode" class="flex justify-center mt-4"></div>
+          </li>
         </ul>
       </div>
 
@@ -769,7 +785,6 @@
           <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-yellow-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-yellow-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <div id="qrcode" class="flex justify-center mt-6"></div>
       </div>
     </div>
 
@@ -791,33 +806,6 @@
   </div>
 
 <script>
-  const teamMembersData = {
-    zomzi: {
-      name: "Zomzi Mpelane",
-      title: "Co-founder & Head of Administration",
-      description: "Zomzi brings extensive experience in administrative management and business development, ensuring the smooth operation and strategic growth of HerdTrace. Her meticulous approach and leadership are vital to our daily functions and long-term planning.",
-      image: "images/zomzi.jpeg"
-    },
-    zusiphe: {
-      name: "Zusiphe Makeleni",
-      title: "Co-founder & Head of Sales and Marketing",
-      description: "Zusiphe is a dynamic marketing professional with a background in digital marketing, driving HerdTrace's market presence and customer engagement. Her innovative strategies help us connect with farmers and expand our reach across communities.",
-      image: "images/zusiphe.jpg"
-    },
-    akhona: {
-      name: "Akhona Dlala",
-      title: "Co-founder & Head of Finance",
-      description: "Akhona is a finance expert responsible for managing the financial health of HerdTrace, ensuring sustainability and growth. Her sharp analytical skills and foresight are crucial in navigating our financial landscape and securing resources for our mission.",
-      image: "images/akhona.jpeg"
-    },
-    noxolo: {
-      name: "Noxolo Mjokovane",
-      title: "Co-founder & Chief Operations Officer",
-      description: "Noxolo oversees the operations at HerdTrace, ensuring efficient service delivery and product deployment. Her leadership in operational excellence guarantees that our solutions are effectively implemented and continuously improved to meet farmer needs.",
-      image: "images/noxolo.jpeg"
-    }
-  };
-
   const heroImages = document.querySelectorAll('.hero-slide-image');
   let currentHeroIndex = 0;
 
@@ -1168,17 +1156,91 @@
     }
   });
 </script>
+<div id="messageBox" style="margin-top:1rem;"></div>
+
+<script>
+document.getElementById('contact').addEventListener('submit', function(e) {
+  e.preventDefault();  // STOP normal form submit and page reload
+
+  const form = e.target;
+  const messageBox = document.getElementById('messageBox');
+  messageBox.innerHTML = '';  // clear previous messages
+
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form)
+  })
+  .then(response => response.text())
+  .then(data => {
+    // Show success or error message inside messageBox div
+    messageBox.innerHTML = `
+      <div style="
+        padding: 10px;
+        border-radius: 5px;
+        color: ${data.toLowerCase().includes('thank you') ? '#155724' : '#721c24'};
+        background-color: ${data.toLowerCase().includes('thank you') ? '#d4edda' : '#f8d7da'};
+        border: 1px solid ${data.toLowerCase().includes('thank you') ? '#c3e6cb' : '#f5c6cb'};
+      ">
+        ${data}
+      </div>
+    `;
+    if (data.toLowerCase().includes('thank you')) form.reset();  // Clear form on success
+  })
+  .catch(() => {
+    messageBox.innerHTML = `
+      <div style="
+        padding: 10px;
+        border-radius: 5px;
+        color: #721c24;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+      ">
+        Sorry, something went wrong. Please try again later.
+      </div>`;
+  });
+});
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact');
+    const messageBox = document.getElementById('messageBox');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      messageBox.textContent = 'Sending...';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => response.text())
+      .then(data => {
+        messageBox.innerHTML = data.includes('Thank you')
+          ? `<span style="color:green;">${data}</span>`
+          : `<span style="color:red;">${data}</span>`;
+        if (data.includes('Thank you')) form.reset();
+      })
+      .catch(() => {
+        messageBox.innerHTML = '<span style="color:red;">Sorry, something went wrong. Please try again.</span>';
+      });
+    });
+  });
+  </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-  new QRCode(document.getElementById("qrcode"), {
-    text: "https://www.herdtrace.co.za",
+  new QRCode(document.getElementById("whatsapp-qrcode"), {
+    text: "https://wa.me/27637989619", 
     width: 100,
     height: 100,
-    colorDark : "#2B5669",
+    colorDark : "#25D366", 
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.H
   });
 </script>
+
+
 
 </body>
 </html>

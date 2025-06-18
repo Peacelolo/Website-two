@@ -395,9 +395,9 @@
       </a>
       <nav class="space-x-6 hidden md:block">
         <a href="index.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a>
+        <a href="index.html#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
+        <a href="index.html#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
         <a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a>
-        <a href="#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a>
-        <a href="#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a>
         <a href="support.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Support</a>
       </nav>
       <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Open mobile menu">
@@ -409,24 +409,14 @@
         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
       <a href="index.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+      <a href="index.html#features" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
+      <a href="index.html#pricing" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Pricing</a>
       <a href="aboutus.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
-      <a href="#features" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
-      <a href="#pricing" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Pricing</a>
       <a href="support.html" class="text-white hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Support</a>
     </div>
   </header>
 
-  <section class="h-[50vh] relative pt-20 overflow-hidden flex flex-col items-center justify-center text-center text-white" id="home">
-    <img src="images/hero_image.jpg" alt="Livestock on a farm" class="hero-slide-image active">
-    <img src="images/goats.jpg" alt="Goats grazing" class="hero-slide-image">
-    <img src="images/cattle.jpg" alt="Cattle in a field" class="hero-slide-image">
-
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white hero-overlay">
-      <h1 class="text-5xl md:text-7xl font-bold uppercase drop-shadow-lg animate-on-scroll">CONTACT   US</h1>
-    </div>
-  </section>
-
-  <main class="py-16 px-6 md:px-12 bg-white text-gray-800">
+  <main class="pt-32 py-16 px-6 md:px-12 bg-white text-gray-800">
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
     
     <!-- Left side: Text + Contact Info -->
@@ -434,7 +424,7 @@
         <div class="max-w-4xl mx-auto">
             <h3 class="text-3xl font-bold text-[#2B5669] text-center mb-4">Customer Support</h3>
 
-    <form action="#" method="POST" class="space-y-6 bg-white shadow-lg rounded-xl p-8">
+    <form id="support_form" action="support_form.php" method="POST" class="space-y-6 bg-white shadow-lg rounded-xl p-8">
       <!-- Name -->
       <div class="grid md:grid-cols-2 gap-6">
         <div>
@@ -464,6 +454,8 @@
         <label class="block text-gray-700 font-medium mb-1" for="message">Message / Questions *</label>
         <textarea id="message" name="message" rows="5" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#2B5669]"></textarea>
       </div>
+      
+      <div id="supportMessage" class="mb-4 text-center"></div>
    
           <!-- Submit Button -->
           <div class="text-center">
@@ -497,15 +489,17 @@
       
       <!-- WhatsApp -->
       <div class="flex items-start space-x-4">
-         <div class="text-[#2B5669] text-2xl">
-           <i class="fab fa-whatsapp text-[#25D366]"></i>
-         </div>
-         <div>
+        <div class="text-[#2B5669] text-2xl">
+          <i class="fab fa-whatsapp text-[#25D366]"></i>
+        </div>
+        <div>
           <h4 class="font-semibold text-[#2B5669]">WhatsApp</h4>
-          <p class="text-gray-700">+27637989619</p>
-         </div>
-     </div>
-
+          <p class="text-gray-700 mb-2">
+            <a href="https://wa.me/27637989619" target="_blank" class="hover:underline hover:text-[#25D366]"> </a>
+          </p>
+          <div id="whatsapp-qrcode" class="mt-2"></div>
+        </div>
+      </div>
 
       <!-- Email Admin -->
       <div class="flex items-start space-x-4">
@@ -550,9 +544,9 @@
         <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
         <ul class="space-y-2 text-base">
           <li><a href="index.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Home</a></li>
-          <li><a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a></li>
           <li><a href="index.html#features" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Features</a></li>
           <li><a href="index.html#pricing" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Pricing</a></li>
+          <li><a href="aboutus.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">About Us</a></li>
           <li><a href="support.html" class="hover:underline hover:text-yellow-300 transition duration-0.3s ease-in-out">Support</a></li>
         </ul>   
       </div>
@@ -569,6 +563,13 @@
             <i class="fas fa-envelope mr-2"></i>
             <a href="mailto:info@herdtrace.co.za" class="hover:underline hover:text-yellow-300">info@herdtrace.co.za</a>
           </li>
+          <li class="flex flex-col items-start">
+            <div class="flex items-center gap-2 mb-1">
+              <i class="fab fa-whatsapp text-[#25D366] text-xl"></i>
+              <a href="https://wa.me/27637989619" target="_blank" class="hover:underline hover:text-yellow-300"> </a>
+            </div>
+            <div id="whatsapp-qrcode-footer" class="mt-2"></div>
+          </li>
         </ul>
       </div>
 
@@ -579,7 +580,6 @@
           <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="hover:text-yellow-300" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="hover:text-yellow-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <div id="qrcode" class="flex justify-center mt-6"></div>
       </div>
     </div>
 
@@ -591,33 +591,6 @@
 </footer>
 
   <script>
-  const teamMembersData = {
-    zomzi: {
-      name: "Zomzi Mpelane",
-      title: "Co-founder & Head of Administration",
-      description: "Zomzi brings extensive experience in administrative management and business development, ensuring the smooth operation and strategic growth of HerdTrace. Her meticulous approach and leadership are vital to our daily functions and long-term planning.",
-      image: "images/zomzi.jpeg"
-    },
-    zusiphe: {
-      name: "Zusiphe Makeleni",
-      title: "Co-founder & Head of Sales and Marketing",
-      description: "Zusiphe is a dynamic marketing professional with a background in digital marketing, driving HerdTrace's market presence and customer engagement. Her innovative strategies help us connect with farmers and expand our reach across communities.",
-      image: "images/zusiphe.jpeg"
-    },
-    akhona: {
-      name: "Akhona Dlala",
-      title: "Co-founder & Head of Finance",
-      description: "Akhona is a finance expert responsible for managing the financial health of HerdTrace, ensuring sustainability and growth. Her sharp analytical skills and foresight are crucial in navigating our financial landscape and securing resources for our mission.",
-      image: "images/akhona.jpeg"
-    },
-    noxolo: {
-      name: "Noxolo Mjokovane",
-      title: "Co-founder & Chief Operations Officer",
-      description: "Noxolo oversees the operations at HerdTrace, ensuring efficient service delivery and product deployment. Her leadership in operational excellence guarantees that our solutions are effectively implemented and continuously improved to meet farmer needs.",
-      image: "images/noxolo.jpeg"
-    }
-  };
-
   const heroImages = document.querySelectorAll('.hero-slide-image');
   let currentHeroIndex = 0;
 
@@ -968,16 +941,58 @@
     }
   });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('support_form');
+  const messageBox = document.getElementById('supportMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    messageBox.textContent = 'Sending...';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => response.text())
+    .then(data => {
+      if (data.includes('Thank you')) {
+        messageBox.innerHTML = `<span style="color: green;">${data}</span>`;
+        form.reset();
+      } else {
+        messageBox.innerHTML = `<span style="color: red;">${data}</span>`;
+      }
+    })
+    .catch(() => {
+      messageBox.innerHTML = '<span style="color: red;">Sorry, something went wrong. Please try again.</span>';
+    });
+  });
+});
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-  new QRCode(document.getElementById("qrcode"), {
-    text: "https://www.herdtrace.co.za",
-    width: 100,
-    height: 100,
-    colorDark : "#2B5669",
-    colorLight : "#ffffff",
-    correctLevel : QRCode.CorrectLevel.H
-  });
+new QRCode(document.getElementById("whatsapp-qrcode"), {
+text: "https://wa.me/27637989619", 
+width: 100,
+height: 100,
+colorDark : "#25D366", 
+colorLight : "#ffffff",
+correctLevel : QRCode.CorrectLevel.H
+});
 </script>
+
+<script>
+new QRCode(document.getElementById("whatsapp-qrcode-footer"), {
+text: "https://wa.me/27637989619", 
+width: 100,
+height: 100,
+colorDark : "#25D366", 
+colorLight : "#ffffff",
+correctLevel : QRCode.CorrectLevel.H
+});
+</script>
+
 </body>
 </html>
