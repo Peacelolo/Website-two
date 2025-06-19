@@ -31,20 +31,15 @@
       </a>
       <nav class="hidden md:flex space-x-8 items-center">
         <a href="index.html" class="hover:text-yellow-300 font-medium">Home</a>
-        <a href="dashboard.html" class="hover:text-yellow-300 font-medium"
-          >Dashboard</a
-        >
-        <a href="profile.html" class="hover:text-yellow-300 font-medium">Profile</a>
-        <a href="supportplatform.html" class="hover:text-yellow-300 font-medium"
-          >Support</a
-        >
+        <a href="dashboard.html" class="hover:text-yellow-300 font-medium">Dashboard</a>
+        <a href="supportplatform.html" class="hover:text-yellow-300 font-medium">Support</a>
+        
         <!-- Notifications -->
         <div class="relative">
           <button
             id="notifBtn"
             class="relative focus:outline-none hover:text-yellow-300"
-            aria-label="Notifications"
-          >
+            aria-label="Notifications">
             <i class="fas fa-bell fa-lg"></i>
             <span
               id="notifBadge"
@@ -56,35 +51,20 @@
           <!-- Dropdown -->
           <div
             id="notifDropdown"
-            class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black"
-          >
+            class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black">
             <div class="p-4 border-b font-semibold">Notifications</div>
             <ul>
-              <li
-                class="p-3 border-b hover:bg-gray-100 cursor-pointer"
-                tabindex="0"
-                role="button"
-              >
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
                 Livestock health alert for Animal ID ht-004
               </li>
-              <li
-                class="p-3 border-b hover:bg-gray-100 cursor-pointer"
-                tabindex="0"
-                role="button"
-              >
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button" >
                 Weather warning: Heavy rain expected tomorrow
               </li>
               <li class="p-3 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
                 New support message from admin
               </li>
             </ul>
-            <div
-              class="text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer"
-              tabindex="0"
-              role="button"
-            >
-              See all notifications
-            </div>
+            <a href="notifications.html" class="block text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button"> See all notifications </a>
           </div>
         </div>
       </nav>

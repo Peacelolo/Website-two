@@ -81,21 +81,39 @@
       <nav class="hidden md:flex space-x-8 items-center">
         <a href="index.html" class="hover:text-yellow-300 font-medium">Home</a>
         <a href="dashboard.html" class="hover:text-yellow-300 font-medium">Dashboard</a>
-        <a href="profile.html" class="hover:text-yellow-300 font-medium">Profile</a>
         <a href="support.html" class="hover:text-yellow-300 font-medium">Support</a>
+        
+        <!-- Notifications -->
         <div class="relative">
-          <button id="notifBtn" class="relative focus:outline-none hover:text-yellow-300" aria-label="Notifications">
+          <button
+            id="notifBtn"
+            class="relative focus:outline-none hover:text-yellow-300"
+            aria-label="Notifications">
             <i class="fas fa-bell fa-lg"></i>
-            <span id="notifBadge" class="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-1.5">3</span>
+            <span
+              id="notifBadge"
+              class="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-1.5"
+              >3</span
+            >
           </button>
-          <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black">
+
+          <!-- Dropdown -->
+          <div
+            id="notifDropdown"
+            class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black">
             <div class="p-4 border-b font-semibold">Notifications</div>
             <ul>
-              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer">Livestock health alert for Animal ID HT-004</li>
-              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer">Weather warning: Heavy rain expected tomorrow</li>
-              <li class="p-3 hover:bg-gray-100 cursor-pointer">New support message from admin</li>
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+                Livestock health alert for Animal ID ht-004
+              </li>
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button" >
+                Weather warning: Heavy rain expected tomorrow
+              </li>
+              <li class="p-3 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+                New support message from admin
+              </li>
             </ul>
-            <div class="text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer">See all notifications</div>
+            <a href="notifications.html" class="block text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button"> See all notifications </a>
           </div>
         </div>
       </nav>
@@ -119,7 +137,7 @@
       </button>
       <div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
         <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
-        <a href="#notifDropdown" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
+        <a href="notifications.html" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
         <div class="flex items-center justify-between pr-2">
           <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
           <label class="inline-flex items-center cursor-pointer">
@@ -127,7 +145,7 @@
             <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
           </label>
         </div>
-        <a href="#" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
+        <a href="password.html" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
         <a href="#" class="text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</a>
       </div>
         <a href="index.html" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
