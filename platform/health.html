@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Monitoring | HerdTrace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #fafee6;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+    .info-box {
+      background: white;
+      border-left: 6px solid #2B5669;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#FAFEE6]">
+  <!-- Header with updated navbar -->
+  <header class="bg-[#2B5669] text-white fixed w-full z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-4">
+        <img src="images/logo.png" alt="HerdTrace Logo" class="h-14 md:h-16" />
+        <span class="text-3xl md:text-4xl font-semibold">HerdTrace</span>
+      </a>
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="index.html" class="hover:text-yellow-300 font-medium">Home</a>
+        <a href="dashboard.html" class="hover:text-yellow-300 font-medium">Dashboard</a>
+        <a href="support.html" class="hover:text-yellow-300 font-medium">Support</a>
+                <!-- Notifications -->
+        <div class="relative">
+          <button
+            id="notifBtn"
+            class="relative focus:outline-none hover:text-yellow-300"
+            aria-label="Notifications">
+            <i class="fas fa-bell fa-lg"></i>
+            <span
+              id="notifBadge"
+              class="absolute -top-2 -right-2 bg-red-500 text-xs rounded-full px-1.5"
+              >3</span
+            >
+          </button>
+
+          <!-- Dropdown -->
+          <div
+            id="notifDropdown"
+            class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg text-black">
+            <div class="p-4 border-b font-semibold">Notifications</div>
+            <ul>
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+                Alert for Animal ID ht-010
+              </li>
+              <li class="p-3 border-b hover:bg-gray-100 cursor-pointer" tabindex="0" role="button" >
+                Weather warning: Heavy rain expected tomorrow
+              </li>
+              <li class="p-3 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button">
+                Alert for Animal ID ht-004
+              </li>
+            </ul>
+            <a href="notifications.html" class="block text-center p-2 text-sm text-gray-600 hover:bg-gray-100 cursor-pointer" tabindex="0" role="button"> See all notifications </a>
+          </div>
+        </div>
+      </nav>
+      <button id="mobileMenuBtn" class="md:hidden focus:outline-none text-white" aria-label="Open mobile menu">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="flex flex-1 pt-20 min-h-[calc(100vh-5rem)]">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#1F3F4C] text-white p-6 flex-shrink-0 flex flex-col">
+      <h4 class="text-xl font-bold mb-4">🐄 HerdTrace</h4>
+      <nav class="flex flex-col space-y-3 flex-grow">
+        <a href="dashboard.html" class="hover:text-yellow-300"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
+        <a href="registerlivestock.html" class="hover:text-yellow-300"><i class="fas fa-plus-square mr-2"></i> Register Livestock</a>
+        <a href="track.html" class="hover:text-yellow-300"><i class="fas fa-map-marker-alt mr-2"></i> Track</a>
+        <a href="health.html" class="hover:text-yellow-300 font-bold"><i class="fas fa-heartbeat mr-2"></i> Health</a>
+        <a href="weather.html" class="hover:text-yellow-300"><i class="fas fa-cloud-sun mr-2"></i> Weather</a>
+        
+      <button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
+        <span><i class="fas fa-user mr-2"></i> Account</span>
+        <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
+      </button>
+      <div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
+        <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
+        <a href="notifications.html" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
+        <div class="flex items-center justify-between pr-2">
+          <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
+          <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
+          </label>
+        </div>
+        <a href="password.html" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
+        <a href="#" class="text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</a>
+      </div>
+        <a href="index.html" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <h1 class="text-4xl font-bold text-[#2B5669] mb-6">Health Monitoring</h1>
+      <div class="flex items-center space-x-4 mb-4">
+        <input id="searchInput" type="text" placeholder="Search by tag number..." class="flex-1 max-w-xs border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        <button onclick="searchAnimal()" class="bg-[#2B5669] text-white px-4 py-2 rounded hover:bg-[#24495b]">Search</button>
+      </div>
+
+      <div id="animalDetails" class="info-box d-none">
+        <h5><strong>Animal ID:</strong> <span id="animalId"></span></h5>
+        <p><strong>Animal Type:</strong> <span id="animalType"></span></p>
+        <p><strong>Gender:</strong> <span id="animalGender"></span></p>
+        <p><strong>Body Temperature:</strong> <span id="bodyTemp"></span> <span id="tempStatus"></span></p>
+        <p><strong>Motion Level:</strong> <span id="motionLevel"></span></p>
+        <p><strong>Pregnancy Summary:</strong> <span id="pregnancy"></span></p>
+        <p><strong>Sick Status:</strong> <span id="sickStatus"></span></p>
+        <p><strong>On Heat:</strong> <span id="onHeat"></span></p>
+        <p><strong>Due Soon:</strong> <span id="dueSoon"></span></p>
+      </div>
+
+      <div id="placeholderMessage" class="text-muted text-center py-5">
+        <i class="fas fa-stethoscope fa-3x mb-3"></i>
+        <p class="lead">Search for an animal above to see its health monitoring summary.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#2B5669] text-white py-10">
+    <div class="container mx-auto px-4 text-center">
+      <div class="mb-4">
+        <a href="https://www.facebook.com/profile.php?id=61573172663345" target="_blank" class="mx-3 hover:text-yellow-300"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.linkedin.com/company/herdtrace/posts/?feedView=all" target="_blank" class="mx-3 hover:text-yellow-300"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:info@herdtrace.co.za" class="mx-3 hover:text-yellow-300"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>&copy; 2025 HerdTrace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const notifBtn = document.getElementById("notifBtn");
+    const notifDropdown = document.getElementById("notifDropdown");
+
+    notifBtn.addEventListener("click", () => {
+      notifDropdown.classList.toggle("hidden");
+    });
+
+    window.addEventListener("click", (e) => {
+      if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
+        notifDropdown.classList.add("hidden");
+      }
+    });
+
+    const animals = [
+  { id: "HT-001", type: "Cattle", gender: "Male", temp: 38.5, motion: "High", pregnant: "No", sick: "Healthy", heat: "No", due: "No" },
+  { id: "HT-002", type: "Cattle", gender: "Female", temp: 39.3, motion: "Low", pregnant: "No", sick: "Sick", heat: "No", due: "No" },
+  { id: "HT-003", type: "Cattle", gender: "Female", temp: 38.6, motion: "Normal", pregnant: "No", sick: "Healthy", heat: "Yes", due: "No" },
+  { id: "HT-004", type: "Cattle", gender: "Female", temp: 39.5, motion: "Low", pregnant: "Yes, 2 months", sick: "Sick", heat: "No", due: "No" },
+  { id: "HT-005", type: "Cattle", gender: "Male", temp: 38.9, motion: "High", pregnant: "No", sick: "Healthy", heat: "No", due: "No" },
+  { id: "HT-006", type: "Sheep", gender: "Female", temp: 39.1, motion: "Normal", pregnant: "Yes, 3 months", sick: "Healthy", heat: "No", due: "Yes" },
+  { id: "HT-007", type: "Sheep", gender: "Male", temp: 40.2, motion: "Low", pregnant: "No", sick: "Sick", heat: "No", due: "No" },
+  { id: "HT-008", type: "Sheep", gender: "Female", temp: 38.7, motion: "Normal", pregnant: "No", sick: "Healthy", heat: "Yes", due: "No" },
+  { id: "HT-009", type: "Sheep", gender: "Female", temp: 39.0, motion: "High", pregnant: "No", sick: "Healthy", heat: "No", due: "No" },
+  { id: "HT-010", type: "Sheep", gender: "Female", temp: 38.4, motion: "Normal", pregnant: "Yes, 1 month", sick: "Healthy", heat: "No", due: "No" }
+];
+
+    function searchAnimal() {
+      const input = document.getElementById("searchInput").value.trim().toUpperCase();
+      const result = animals.find(a => a.id === input);
+      const card = document.getElementById("animalDetails");
+      const placeholder = document.getElementById("placeholderMessage");
+
+      if (result) {
+        document.getElementById("animalId").textContent = result.id;
+        document.getElementById("animalType").textContent = result.type;
+        document.getElementById("animalGender").textContent = result.gender;
+        document.getElementById("bodyTemp").textContent = result.temp + " °C";
+        document.getElementById("motionLevel").textContent = result.motion;
+        document.getElementById("pregnancy").textContent = result.type === "Sheep" || result.type === "Cattle" ? result.pregnant : "N/A";
+        document.getElementById("sickStatus").textContent = result.sick;
+        document.getElementById("onHeat").textContent = result.heat;
+        document.getElementById("dueSoon").textContent = result.due;
+
+        const tempStatus = result.temp >= 38.3 && result.temp <= 39.4 ? "<span class='text-green-600'>(Normal)</span>" : "<span class='text-red-600'>(Abnormal)</span>";
+        document.getElementById("tempStatus").innerHTML = tempStatus;
+
+        card.classList.remove("d-none");
+        placeholder.classList.add("d-none");
+      } else {
+        card.classList.add("d-none");
+        placeholder.classList.remove("d-none");
+        alert("Animal ID not found.");
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem("loggedIn");
+      window.location.href = "HerdWebApp.html";
+    }    
+
+  function toggleAccountMenu() {
+    const submenu = document.getElementById("accountSubMenu");
+    const arrow = document.getElementById("accountArrow");
+    submenu.classList.toggle("hidden");
+    arrow.classList.toggle("rotate-90");
+  }
+  </script>
+</body>
+</html>

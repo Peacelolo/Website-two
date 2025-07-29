@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register Livestock | HerdTrace</title>
+  <title>Dashboard | HerdTrace</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,50 +22,18 @@
       font-family: "Inter", sans-serif;
       background-color: #fafee6;
     }
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-family: "Plus Jakarta Sans", sans-serif;
     }
     .dashboard-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       background-color: #f0f8ff;
-    }
-    /* Form styles */
-    form {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      max-width: 600px;
-      width: 100%;
-      margin: auto;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: #2B5669;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #2B5669;
-      color: white;
-      font-weight: 700;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #24495b;
     }
   </style>
 </head>
@@ -80,8 +48,9 @@
       <nav class="hidden md:flex space-x-8 items-center">
         <a href="index.html" class="hover:text-yellow-300 font-medium">Home</a>
         <a href="dashboard.html" class="hover:text-yellow-300 font-medium">Dashboard</a>
-        <a href="support.html" class="hover:text-yellow-300 font-medium">Support</a>
-                <!-- Notifications -->
+        <a href="supportplatform.html" class="hover:text-yellow-300 font-medium">Support</a>
+        
+        <!-- Notifications -->
         <div class="relative">
           <button
             id="notifBtn"
@@ -130,20 +99,21 @@
   <div class="flex flex-1 pt-20 min-h-[calc(100vh-5rem)]">
     <!-- Sidebar -->
     <aside
-      class="w-64 bg-[#1F3F4C] text-white p-6 flex-shrink-0 flex flex-col">
+      class="w-64 bg-[#1F3F4C] text-white p-6 flex-shrink-0 flex flex-col"
+    >
       <h4 class="text-xl font-bold mb-4">🐄 HerdTrace</h4>
       <nav class="flex flex-col space-y-3 flex-grow">
         <a href="dashboard.html" class="hover:text-yellow-300">
           <i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
         <a href="registerlivestock.html" class="hover:text-yellow-300">
           <i class="fas fa-plus-square mr-2"></i> Register Livestock</a>
-        <a href="track.html" class="hover:text-yellow-300"
-          ><i class="fas fa-map-marker-alt mr-2"></i> Track</a>
+        <a href="track.html" class="hover:text-yellow-300">
+          <i class="fas fa-map-marker-alt mr-2"></i> Track</a>
         <a href="health.html" class="hover:text-yellow-300">
           <i class="fas fa-heartbeat mr-2"></i> Health</a>
         <a href="weather.html" class="hover:text-yellow-300">
-          <i class="fas fa-cloud-sun mr-2"></i> Weather</a>
-        
+          <i class="fas fa-cloud-sun mr-2"></i> Weather</a>        
+        <div>
       <button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
         <span><i class="fas fa-user mr-2"></i> Account</span>
         <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
@@ -161,115 +131,46 @@
         <a href="password.html" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
         <a href="#" class="text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</a>
       </div>
-        <a href="index.html"onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto">
+    </div>
+        <a href="index.html" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto">
           <i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
       </nav>
     </aside>
 
-    <!-- Content: Register Livestock Form -->
-    <main class="flex-1 p-10">
-      <h1 class="text-4xl font-bold text-[#2B5669] mb-8">Register Livestock</h1>
-      <!-- Add this section inside <main> before your form -->
-<section class="max-w-2xl mx-auto bg-white rounded p-6 mb-8 shadow">
-  <h2 class="text-2xl font-semibold mb-4 text-[#2B5669]">Animal Summary</h2>
-  <form id="summaryForm" novalidate>
-    <div class="grid grid-cols-3 gap-4">
-      <div>
-        <label for="countCattle" class="block mb-2 font-semibold text-[#2B5669]">Cattle</label>
-        <input
-          type="number"
-          id="countCattle"
-          name="countCattle"
-          min="0"
-          placeholder="0"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          value="0"
-        />
-      </div>
-      <div>
-        <label for="countSheep" class="block mb-2 font-semibold text-[#2B5669]">Sheep</label>
-        <input
-          type="number"
-          id="countSheep"
-          name="countSheep"
-          min="0"
-          placeholder="0"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          value="0"
-        />
-      </div>
-      <div>
-        <label for="countGoat" class="block mb-2 font-semibold text-[#2B5669]">Goat</label>
-        <input
-          type="number"
-          id="countGoat"
-          name="countGoat"
-          min="0"
-          placeholder="0"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          value="0"
-        />
-      </div>
-    </div>
-  </form>
-</section>
-
-      <form action="#" method="POST" id="registerForm" novalidate>
-        <div>
-          <label for="animalType" class="block mb-2 font-semibold text-[#2B5669]">Animal Type</label>
-          <select id="animalType" name="animalType" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-            <option value="" disabled selected class="text-gray-400">Select animal type</option>
-            <option value="sheep">Cattle</option>
-            <option value="goat">Sheep</option>
-            <option value="cattle">Goat</option>
-          </select>
-        </div>
-        <!-- Age -->
-        <div>
-          <label for="age" class="block mb-2 font-semibold text-[#2B5669]">Age</label>
-          <input type="text" id="age" name="age" placeholder="Enter age" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-        </div>
-        <!-- Breed -->
-        <!--<div>
-          <label for="breed" class="block mb-2 font-semibold text-[#2B5669]">Breed</label>
-          <input type="text" id="breed" name="breed" placeholder="Enter breed" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-        </div> -->
-
-        <!-- Gender -->
-        <div>
-          <label for="gender" class="block mb-2 font-semibold text-[#2B5669]">Gender</label>
-          <select id="gender" name="gender" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-            <option value="" disabled selected class="text-gray-400">Select gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-
-        <!-- Tag Number -->
-        <div>
-          <label for="tagNumber" class="block mb-2 font-semibold text-gray-700">Tag Number</label>
-          <input type="text" id="tagNumber" name="tagNumber" placeholder="Enter tag number" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-        </div>
-
-        <!-- Description -->
-       <!-- <div>
-          <label for="description" class="block mb-2 font-semibold text-gray-700">Description</label>
-          <textarea id="description" name="description" rows="4" placeholder="Add description"
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
-        </div>-->
-
-        <!-- Submit Button -->
-         <div>
-          <button type="submit" class="bg-[#2B5669] text-white font-bold py-3 px-6 rounded w-full transition-colors hover:bg-[#24495b]">
-            Submit
-          </button>
-        </div>
-
-        
-      </form>
+    <!-- Dashboard Cards -->
+    <main class="flex-1 p-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <a
+        href="registerlivestock.html"
+        class="dashboard-card bg-white rounded-xl p-6 shadow text-center transition-transform"
+      >
+        <i class="fas fa-file-medical fa-3x text-green-600"></i>
+        <h3 class="mt-4 text-xl font-semibold">Register Livestock</h3>
+        <p>Register your Herd</p>
+      </a>
+      <a
+        href="track.html"
+        class="dashboard-card bg-white rounded-xl p-6 shadow text-center transition-transform"
+      >
+        <i class="fas fa-map-marked-alt fa-3x text-red-500"></i>
+        <h3 class="mt-4 text-xl font-semibold">Track</h3>
+        <p>Live location & activity</p>
+      </a>
+      <a
+        href="health.html"
+        class="dashboard-card bg-white rounded-xl p-6 shadow text-center transition-transform"
+      >
+        <i class="fas fa-stethoscope fa-3x text-yellow-500"></i>
+        <h3 class="mt-4 text-xl font-semibold">Health</h3>
+        <p>Health monitoring</p>
+      </a>
+      <a
+        href="weather.html"
+        class="dashboard-card bg-white rounded-xl p-6 shadow text-center transition-transform"
+      >
+        <i class="fas fa-cloud-sun fa-3x text-blue-600"></i>
+        <h3 class="mt-4 text-xl font-semibold">Weather</h3>
+        <p>View weather forecast</p>
+      </a>
     </main>
   </div>
 
@@ -314,14 +215,6 @@
     window.addEventListener("click", (e) => {
       if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
         notifDropdown.classList.add("hidden");
-      }
-    });
-
-    // Optional: Form validation
-    document.getElementById("registerForm").addEventListener("submit", function(e) {
-      if (!this.checkValidity()) {
-        e.preventDefault();
-        alert("Please fill out all required fields correctly.");
       }
     });
 

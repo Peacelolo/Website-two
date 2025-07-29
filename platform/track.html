@@ -172,42 +172,102 @@
       <p>&copy; 2025 HerdTrace. All rights reserved.</p>
     </div>
   </footer>
+
   <script>
-  const map = L.map('map').setView([-31.59, 28.77], 13); // Or your default farm location
+    const animals = [
+      { id: "HT-001", x: 30, y: 35, color: "red", coords: "-31.589, 28.774" },
+      { id: "HT-002", x: 25, y: 55, color: "red", coords: "-31.590, 28.772" },
+      { id: "HT-003", x: 40, y: 30, color: "red", coords: "-31.588, 28.770" },
+      { id: "HT-004", x: 70, y: 35, color: "red", coords: "-31.591, 28.776" },
+      { id: "HT-005", x: 85, y: 60, color: "red", coords: "-31.592, 28.778" },
+      { id: "HT-006", x: 20, y: 70, color: "blue", coords: "-31.593, 28.779" },
+      { id: "HT-007", x: 35, y: 65, color: "blue", coords: "-31.594, 28.780" },
+      { id: "HT-008", x: 55, y: 80, color: "blue", coords: "-31.595, 28.781" },
+      { id: "HT-009", x: 75, y: 75, color: "blue", coords: "-31.596, 28.782" },
+      { id: "HT-010", x: 90, y: 20, color: "blue", coords: "-31.597, 28.783" },
+    ];
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+    const map = document.getElementById("map-container");
+    const animalIdElem = document.getElementById("animal-id");
+    const locationElem = document.getElementById("animal-location");
+    const animalTypeElem = document.getElementById("animal-type");
+    const geofenceStatusElem = document.getElementById("geofence-status");
 
-  fetch("get_tracking_data.php")
-    .then(res => res.json())
-    .then(data => {
-      if (data.error) {
-        alert("Error loading animals: " + data.error);
-        return;
-      }
+    function getType(color) {
+      return color === "red" ? "Sheep" : "Cattle";
+    }
 
-      data.forEach(animal => {
-        const marker = L.marker([animal.lat, animal.lng]).addTo(map);
-        marker.bindPopup(`
-          <b>Ear Tag:</b> ${animal.id}<br>
-          <b>Type:</b> ${animal.type}<br>
-          <b>Location:</b> ${animal.lat}, ${animal.lng}
-        `);
+    function isOutOfBounds(animal) {
+      // Only HT-010 is considered outside now
+      return animal.id === "HT-010";
+    }
 
-        marker.on("click", () => {
-          document.getElementById("animal-id").textContent = animal.id;
-          document.getElementById("animal-location").textContent = `${animal.lat}, ${animal.lng}`;
-          document.getElementById("animal-type").textContent = animal.type;
-          document.getElementById("geofence-status").textContent = "🟢 Live";
+    function loadPins(filter = "") {
+      map.innerHTML = '<div id="geofence"></div>';
+      const filtered = animals.filter(animal => animal.id.includes(filter.toUpperCase()));
+      filtered.forEach(animal => {
+        const pin = document.createElement("div");
+        pin.className = `pin ${animal.color}`;
+        pin.style.left = `${animal.x}%`;
+        pin.style.top = `${animal.y}%`;
+        pin.textContent = animal.id;
+        pin.addEventListener("click", () => {
+          animalIdElem.textContent = animal.id;
+          locationElem.textContent = animal.coords;
+          animalTypeElem.textContent = getType(animal.color);
+          geofenceStatusElem.textContent = isOutOfBounds(animal)
+            ? "⚠️ Outside the zone"
+            : "🟢 Within the zone";
         });
+        map.appendChild(pin);
       });
-    })
-    .catch(err => {
-      console.error("Fetch failed:", err);
-    });
-</script>
 
+      if (filter && filtered.length) {
+        const a = filtered[0];
+        animalIdElem.textContent = a.id;
+        locationElem.textContent = a.coords;
+        animalTypeElem.textContent = getType(a.color);
+        geofenceStatusElem.textContent = isOutOfBounds(a)
+          ? "⚠️ Outside the zone"
+          : "🟢 Within the zone";
+      } else if (!filter) {
+        animalIdElem.textContent = "";
+        locationElem.textContent = "";
+        animalTypeElem.textContent = "";
+        geofenceStatusElem.textContent = "";
+      }
+    }
+
+    function triggerSearch() {
+      const query = document.getElementById("searchInput").value.trim();
+      loadPins(query);
+    }
+
+    document.getElementById("searchInput").addEventListener("input", e => {
+      if (!e.target.value.trim()) loadPins("");
+    });
+
+    document.getElementById("searchInput").addEventListener("keypress", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        triggerSearch();
+      }
+    });
+
+    window.onload = () => loadPins();
+
+    function logout() {
+      sessionStorage.removeItem("loggedIn");
+      window.location.href = "HerdWebApp.html";
+    }
+
+    function toggleAccountMenu() {
+      const submenu = document.getElementById("accountSubMenu");
+      const arrow = document.getElementById("accountArrow");
+      submenu.classList.toggle("hidden");
+      arrow.classList.toggle("rotate-90");
+    }
+  </script>
   <script>
   function logout() {
     sessionStorage.removeItem("loggedIn");
