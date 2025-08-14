@@ -170,58 +170,34 @@
     <main class="flex-1 p-10">
       <h1 class="text-4xl font-bold text-[#2B5669] mb-8">Register Livestock</h1>
       <!-- Add this section inside <main> before your form -->
-<section class="max-w-2xl mx-auto bg-white rounded p-6 mb-8 shadow">
+        <section class="max-w-2xl mx-auto bg-white rounded p-6 mb-8 shadow">
   <h2 class="text-2xl font-semibold mb-4 text-[#2B5669]">Animal Summary</h2>
   <form id="summaryForm" novalidate>
     <div class="grid grid-cols-3 gap-4">
       <div>
-        <label for="countCattle" class="block mb-2 font-semibold text-[#2B5669]">Cattle</label>
-        <input
-          type="number"
-          id="countCattle"
-          name="countCattle"
-          min="0"
-          placeholder="0"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          value="0"
-        />
+        <label for="count_cattle" class="block mb-2 font-semibold text-[#2B5669]">Cattle</label>
+        <input type="hidden" id="count_cattle" name="count_cattle" min="0" placeholder="0" value="0" readonly class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"/>
       </div>
       <div>
-        <label for="countSheep" class="block mb-2 font-semibold text-[#2B5669]">Sheep</label>
-        <input
-          type="number"
-          id="countSheep"
-          name="countSheep"
-          min="0"
-          placeholder="0"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          value="0"
-        />
+        <label for="count_sheep" class="block mb-2 font-semibold text-[#2B5669]">Sheep</label>
+        <input type="hidden" id="count_sheep" name="count_sheep" min="0" placeholder="0" value="0" readonly class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
       </div>
       <div>
-        <label for="countGoat" class="block mb-2 font-semibold text-[#2B5669]">Goat</label>
-        <input
-          type="number"
-          id="countGoat"
-          name="countGoat"
-          min="0"
-          placeholder="0"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-          value="0"
-        />
+        <label for="count_goat" class="block mb-2 font-semibold text-[#2B5669]">Goat</label>
+        <input type="hidden" id="count_goat" name="count_goat" min="0" placeholder="0" value="0" readonly class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"/>
+        </div>
       </div>
-    </div>
-  </form>
-</section>
+    </form>
+  </section> 
 
       <form action="#" method="POST" id="registerForm" novalidate>
         <div>
-          <label for="animalType" class="block mb-2 font-semibold text-[#2B5669]">Animal Type</label>
-          <select id="animalType" name="animalType" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+          <label for="animal_type" class="block mb-2 font-semibold text-[#2B5669]">Animal Type</label>
+          <select id="animal_type" name="animal_type" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
             <option value="" disabled selected class="text-gray-400">Select animal type</option>
-            <option value="sheep">Cattle</option>
-            <option value="goat">Sheep</option>
-            <option value="cattle">Goat</option>
+            <option value="cattle">Cattle</option>
+            <option value="sheep">Sheep</option>
+            <option value="goat">Goat</option>
           </select>
         </div>
         <!-- Age -->
@@ -249,8 +225,8 @@
 
         <!-- Tag Number -->
         <div>
-          <label for="tagNumber" class="block mb-2 font-semibold text-gray-700">Tag Number</label>
-          <input type="text" id="tagNumber" name="tagNumber" placeholder="Enter tag number" required
+          <label for="tag_number" class="block mb-2 font-semibold text-gray-700">Tag Number</label>
+          <input type="text" id="tag_number" name="tag_number" placeholder="Enter tag number" required
             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
         </div>
 
@@ -298,39 +274,84 @@
   </footer>
 
   <script>
-    function logout() {
-      sessionStorage.removeItem("loggedIn");
-      window.location.href = "HerdWebApp.html";
+  // Logout function
+  function logout() { 
+    sessionStorage.removeItem("loggedIn"); 
+    window.location.href = "HerdWebApp.html"; 
+  }
+
+  // Notifications dropdown
+  const notifBtn = document.getElementById("notifBtn");
+  const notifDropdown = document.getElementById("notifDropdown");
+
+  notifBtn.addEventListener("click", () => { 
+    notifDropdown.classList.toggle("hidden"); 
+  });
+
+  window.addEventListener("click", (e) => {
+    if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
+      notifDropdown.classList.add("hidden");
     }
+  });
 
-    const notifBtn = document.getElementById("notifBtn");
-    const notifDropdown = document.getElementById("notifDropdown");
-
-    notifBtn.addEventListener("click", () => {
-      notifDropdown.classList.toggle("hidden");
-    });
-
-    // Close dropdown when clicking outside
-    window.addEventListener("click", (e) => {
-      if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
-        notifDropdown.classList.add("hidden");
-      }
-    });
-
-    // Optional: Form validation
-    document.getElementById("registerForm").addEventListener("submit", function(e) {
-      if (!this.checkValidity()) {
-        e.preventDefault();
-        alert("Please fill out all required fields correctly.");
-      }
-    });
-
+  // Account submenu toggle
   function toggleAccountMenu() {
     const submenu = document.getElementById("accountSubMenu");
     const arrow = document.getElementById("accountArrow");
     submenu.classList.toggle("hidden");
     arrow.classList.toggle("rotate-90");
   }
-  </script>
+
+  // Handle animal registration form submission
+  document.getElementById("registerForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    if(!this.checkValidity()){ 
+      alert("Please fill out all required fields correctly."); 
+      return; 
+    }
+
+    // Collect form data
+    const formData = new FormData();
+    formData.append("animal_type", document.getElementById("animalType").value);
+    formData.append("age", document.getElementById("age").value);
+    formData.append("gender", document.getElementById("gender").value);
+    formData.append("tag_number", document.getElementById("tagNumber").value);
+
+    try {
+      const response = await fetch("register_livestock.php", { method:"POST", body:formData });
+      const result = await response.json();
+
+      if(result.success){
+        alert(result.success);
+
+        // Increment summary counts automatically
+        const countCattleField = document.getElementById("count_cattle");
+        const countSheepField = document.getElementById("count_sheep");
+        const countGoatField = document.getElementById("count_goat");
+
+        if(document.getElementById("animalType").value === "cattle") {
+          countCattleField.value = parseInt(countCattleField.value) + 1;
+        } else if(document.getElementById("animalType").value === "sheep") {
+          countSheepField.value = parseInt(countSheepField.value) + 1;
+        } else if(document.getElementById("animalType").value === "goat") {
+          countGoatField.value = parseInt(countGoatField.value) + 1;
+        }
+
+        // Reset only the registration form, keep summary intact
+        this.reset();
+
+      } else {
+        alert(result.error || "Something went wrong.");
+      }
+
+    } catch(error){
+      console.error(error);
+      alert("Failed to connect to the server.");
+    }
+  });
+</script>
+
+
 </body>
 </html>

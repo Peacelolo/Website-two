@@ -1,31 +1,85 @@
 <?php
 header('Content-Type: application/json');
-$mysqli = new mysqli("localhost", "your_db_user", "your_db_pass", "herdtrace_db");
 
+// Database connection
+$mysqli = new mysqli("localhost", "root", "@Lolo123", "herdtrace_db");
 if ($mysqli->connect_error) {
-  echo json_encode(["error" => "Database connection failed."]);
-  exit;
+    echo json_encode(["error" => "Database connection failed."]);
+    exit;
 }
 
-$animalType = $_POST['animalType'] ?? '';
+// Hardcode user_id for now
+$user_id = 1;
+
+// Get POST data (snake_case matches HTML form)
+$animal_type = $_POST['animal_type'] ?? '';
 $age = $_POST['age'] ?? '';
 $gender = $_POST['gender'] ?? '';
-$tagNumber = $_POST['tagNumber'] ?? '';
+$tag_number = $_POST['tag_number'] ?? '';
 
-if (!$animalType || !$age || !$gender || !$tagNumber) {
-  echo json_encode(["error" => "All fields are required."]);
-  exit;
+if (!$animal_type || !$age || !$gender || !$tag_number) {
+    echo json_encode(["error" => "All required fields must be filled."]);
+    exit;
 }
 
-// Prevent SQL injection with prepared statements
-$stmt = $mysqli->prepare("INSERT INTO animal_tracking (animal_type, age, gender, tag_number) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssss", $animalType, $age, $gender, $tagNumber);
+// Check for duplicate tag_number
+$check = $mysqli->prepare("SELECT animal_id FROM register_animal WHERE tag_number = ?");
+$check->bind_param("s", $tag_number);
+$check->execute();
+$check->store_result();
+if ($check->num_rows > 0) {
+    echo json_encode(["error" => "Tag number already exists."]);
+    exit;
+}
+$check->close();
+
+// Get current counts for this user
+$countQuery = $mysqli->prepare("SELECT count_cattle, count_sheep, count_goat FROM register_animal WHERE user_id = ?");
+$countQuery->bind_param("i", $user_id);
+$countQuery->execute();
+$countQuery->bind_result($currCattle, $currSheep, $currGoat);
+
+// Initialize counts if no rows yet
+$currCattle = 0; $currSheep = 0; $currGoat = 0;
+while ($countQuery->fetch()) {
+    $currCattle = $currCattle + 0;
+    $currSheep = $currSheep + 0;
+    $currGoat = $currGoat + 0;
+}
+$countQuery->close();
+
+// Increment the count for the animal type
+switch (strtolower($animal_type)) {
+    case 'cattle':
+        $currCattle++;
+        break;
+    case 'sheep':
+        $currSheep++;
+        break;
+    case 'goat':
+        $currGoat++;
+        break;
+}
+
+// Insert new animal record
+$stmt = $mysqli->prepare("INSERT INTO register_animal 
+    (user_id, count_cattle, count_sheep, count_goat, animal_type, age, gender, tag_number) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("iiiissss", $user_id, $currCattle, $currSheep, $currGoat, $animal_type, $age, $gender, $tag_number);
 
 if ($stmt->execute()) {
-  echo json_encode(["success" => "Animal registered successfully."]);
+    echo json_encode([
+        "success" => "Animal registered successfully.",
+        "counts" => [
+            "count_cattle" => $currCattle,
+            "count_sheep" => $currSheep,
+            "count_goat" => $currGoat
+        ]
+    ]);
 } else {
-  echo json_encode(["error" => "Failed to register animal."]);
+    echo json_encode(["error" => "Failed to register animal."]);
 }
+
 $stmt->close();
 $mysqli->close();
 ?>
