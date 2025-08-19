@@ -11,7 +11,7 @@ if ($mysqli->connect_error) {
 // Hardcode user_id for now
 $user_id = 1;
 
-// Get POST data (snake_case matches HTML form)
+// Get POST data
 $animal_type = $_POST['animal_type'] ?? '';
 $age = $_POST['age'] ?? '';
 $gender = $_POST['gender'] ?? '';
@@ -33,22 +33,27 @@ if ($check->num_rows > 0) {
 }
 $check->close();
 
-// Get current counts for this user
-$countQuery = $mysqli->prepare("SELECT count_cattle, count_sheep, count_goat FROM register_animal WHERE user_id = ?");
+// Get the latest counts for this user
+$countQuery = $mysqli->prepare("
+    SELECT count_cattle, count_sheep, count_goat
+    FROM register_animal
+    WHERE user_id = ?
+    ORDER BY created_at DESC
+    LIMIT 1
+");
 $countQuery->bind_param("i", $user_id);
 $countQuery->execute();
 $countQuery->bind_result($currCattle, $currSheep, $currGoat);
 
-// Initialize counts if no rows yet
-$currCattle = 0; $currSheep = 0; $currGoat = 0;
-while ($countQuery->fetch()) {
-    $currCattle = $currCattle + 0;
-    $currSheep = $currSheep + 0;
-    $currGoat = $currGoat + 0;
+if (!$countQuery->fetch()) {
+    // No previous record — start from zero
+    $currCattle = 0;
+    $currSheep = 0;
+    $currGoat = 0;
 }
 $countQuery->close();
 
-// Increment the count for the animal type
+// Increment the count for the selected animal type
 switch (strtolower($animal_type)) {
     case 'cattle':
         $currCattle++;
@@ -61,10 +66,12 @@ switch (strtolower($animal_type)) {
         break;
 }
 
-// Insert new animal record
-$stmt = $mysqli->prepare("INSERT INTO register_animal 
-    (user_id, count_cattle, count_sheep, count_goat, animal_type, age, gender, tag_number) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+// Insert the new animal record
+$stmt = $mysqli->prepare("
+    INSERT INTO register_animal 
+    (user_id, count_cattle, count_sheep, count_goat, animal_type, age, gender, tag_number, created_at) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())
+");
 $stmt->bind_param("iiiissss", $user_id, $currCattle, $currSheep, $currGoat, $animal_type, $age, $gender, $tag_number);
 
 if ($stmt->execute()) {

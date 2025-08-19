@@ -274,84 +274,101 @@
   </footer>
 
   <script>
-  // Logout function
-  function logout() { 
+// Logout function
+function logout() { 
     sessionStorage.removeItem("loggedIn"); 
     window.location.href = "HerdWebApp.html"; 
-  }
+}
 
-  // Notifications dropdown
-  const notifBtn = document.getElementById("notifBtn");
-  const notifDropdown = document.getElementById("notifDropdown");
+// Notifications dropdown
+const notifBtn = document.getElementById("notifBtn");
+const notifDropdown = document.getElementById("notifDropdown");
 
-  notifBtn.addEventListener("click", () => { 
+notifBtn.addEventListener("click", () => { 
     notifDropdown.classList.toggle("hidden"); 
-  });
+});
 
-  window.addEventListener("click", (e) => {
+window.addEventListener("click", (e) => {
     if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
-      notifDropdown.classList.add("hidden");
+        notifDropdown.classList.add("hidden");
     }
-  });
+});
 
-  // Account submenu toggle
-  function toggleAccountMenu() {
+// Account submenu toggle
+function toggleAccountMenu() {
     const submenu = document.getElementById("accountSubMenu");
     const arrow = document.getElementById("accountArrow");
     submenu.classList.toggle("hidden");
     arrow.classList.toggle("rotate-90");
-  }
+}
 
-  // Handle animal registration form submission
-  document.getElementById("registerForm").addEventListener("submit", async function(e){
+// Handle animal registration form submission
+document.getElementById("registerForm").addEventListener("submit", async function(e){
     e.preventDefault();
 
+    // Check HTML5 validation
     if(!this.checkValidity()){ 
-      alert("Please fill out all required fields correctly."); 
-      return; 
+        alert("Please fill out all required fields correctly."); 
+        return; 
     }
 
-    // Collect form data
+    // Collect form data — match the HTML IDs exactly
     const formData = new FormData();
-    formData.append("animal_type", document.getElementById("animalType").value);
+    formData.append("animal_type", document.getElementById("animal_type").value);
     formData.append("age", document.getElementById("age").value);
     formData.append("gender", document.getElementById("gender").value);
-    formData.append("tag_number", document.getElementById("tagNumber").value);
+    formData.append("tag_number", document.getElementById("tag_number").value);
 
     try {
-      const response = await fetch("register_livestock.php", { method:"POST", body:formData });
-      const result = await response.json();
+        const response = await fetch("register_livestock.php", { method: "POST", body: formData });
+        
+        // Debug: show raw server response
+        const text = await response.text();
+        console.log("Raw server response:", text);
 
-      if(result.success){
-        alert(result.success);
-
-        // Increment summary counts automatically
-        const countCattleField = document.getElementById("count_cattle");
-        const countSheepField = document.getElementById("count_sheep");
-        const countGoatField = document.getElementById("count_goat");
-
-        if(document.getElementById("animalType").value === "cattle") {
-          countCattleField.value = parseInt(countCattleField.value) + 1;
-        } else if(document.getElementById("animalType").value === "sheep") {
-          countSheepField.value = parseInt(countSheepField.value) + 1;
-        } else if(document.getElementById("animalType").value === "goat") {
-          countGoatField.value = parseInt(countGoatField.value) + 1;
+        // Parse JSON safely
+        let result;
+        try {
+            result = JSON.parse(text);
+        } catch (err) {
+            alert("Server returned invalid JSON. Check console for details.");
+            console.error("JSON parse error:", err);
+            return;
         }
 
-        // Reset only the registration form, keep summary intact
-        this.reset();
+        if(result.success){
+            alert(result.success);
 
-      } else {
-        alert(result.error || "Something went wrong.");
-      }
+            // Increment summary counts automatically
+            const countCattleField = document.getElementById("count_cattle");
+            const countSheepField = document.getElementById("count_sheep");
+            const countGoatField = document.getElementById("count_goat");
+
+            switch(document.getElementById("animal_type").value) {
+                case "cattle":
+                    countCattleField.value = parseInt(countCattleField.value) + 1;
+                    break;
+                case "sheep":
+                    countSheepField.value = parseInt(countSheepField.value) + 1;
+                    break;
+                case "goat":
+                    countGoatField.value = parseInt(countGoatField.value) + 1;
+                    break;
+            }
+
+            // Reset only the registration form, keep summary intact
+            this.reset();
+
+        } else {
+            alert(result.error || "Something went wrong.");
+        }
 
     } catch(error){
-      console.error(error);
-      alert("Failed to connect to the server.");
+        console.error(error);
+        alert("Failed to connect to the server.");
     }
-  });
+});
 </script>
-
 
 </body>
 </html>
