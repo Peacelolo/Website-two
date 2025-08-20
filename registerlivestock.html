@@ -319,54 +319,60 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     formData.append("gender", document.getElementById("gender").value);
     formData.append("tag_number", document.getElementById("tag_number").value);
 
+  // Check if user is logged in (simple check, can be improved)
+  if (!sessionStorage.getItem("loggedIn")) {
+    alert("You must be logged in to register livestock.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    const response = await fetch("register_animal.php", { method: "POST", body: formData });
+    // Debug: show raw server response
+    const text = await response.text();
+    console.log("Raw server response:", text);
+
+    // Parse JSON safely
+    let result;
     try {
-        const response = await fetch("register_livestock.php", { method: "POST", body: formData });
-        
-        // Debug: show raw server response
-        const text = await response.text();
-        console.log("Raw server response:", text);
-
-        // Parse JSON safely
-        let result;
-        try {
-            result = JSON.parse(text);
-        } catch (err) {
-            alert("Server returned invalid JSON. Check console for details.");
-            console.error("JSON parse error:", err);
-            return;
-        }
-
-        if(result.success){
-            alert(result.success);
-
-            // Increment summary counts automatically
-            const countCattleField = document.getElementById("count_cattle");
-            const countSheepField = document.getElementById("count_sheep");
-            const countGoatField = document.getElementById("count_goat");
-
-            switch(document.getElementById("animal_type").value) {
-                case "cattle":
-                    countCattleField.value = parseInt(countCattleField.value) + 1;
-                    break;
-                case "sheep":
-                    countSheepField.value = parseInt(countSheepField.value) + 1;
-                    break;
-                case "goat":
-                    countGoatField.value = parseInt(countGoatField.value) + 1;
-                    break;
-            }
-
-            // Reset only the registration form, keep summary intact
-            this.reset();
-
-        } else {
-            alert(result.error || "Something went wrong.");
-        }
-
-    } catch(error){
-        console.error(error);
-        alert("Failed to connect to the server.");
+      result = JSON.parse(text);
+    } catch (err) {
+      alert("Server returned invalid JSON. Check console for details.");
+      console.error("JSON parse error:", err);
+      return;
     }
+
+    if(result.success){
+      alert(result.success);
+
+      // Increment summary counts automatically
+      const countCattleField = document.getElementById("count_cattle");
+      const countSheepField = document.getElementById("count_sheep");
+      const countGoatField = document.getElementById("count_goat");
+
+      switch(document.getElementById("animal_type").value) {
+        case "cattle":
+          countCattleField.value = parseInt(countCattleField.value) + 1;
+          break;
+        case "sheep":
+          countSheepField.value = parseInt(countSheepField.value) + 1;
+          break;
+        case "goat":
+          countGoatField.value = parseInt(countGoatField.value) + 1;
+          break;
+      }
+
+      // Reset only the registration form, keep summary intact
+      this.reset();
+
+    } else {
+      alert(result.error || "Something went wrong.");
+    }
+
+  } catch(error){
+    console.error(error);
+    alert("Failed to connect to the server.");
+  }
 });
 </script>
 

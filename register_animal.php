@@ -7,9 +7,14 @@ if ($mysqli->connect_error) {
     echo json_encode(["error" => "Database connection failed."]);
     exit;
 }
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(["error" => "User not logged in."]);
+    exit;
+}
 
-// Hardcode user_id for now
-$user_id = 1;
+// Use user_id from session
+$user_id = $_SESSION['user_id'];
 
 // Get POST data
 $animal_type = $_POST['animal_type'] ?? '';
