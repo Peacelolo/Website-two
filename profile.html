@@ -223,10 +223,14 @@
 
   <script>
 document.addEventListener('DOMContentLoaded', function() {
+
   // Fetch and populate profile data on page load
   (async function() {
     try {
-      const response = await fetch('update_profile.php', { method: 'GET' });
+      const response = await fetch('update_profile.php', {
+        method: 'GET',
+        credentials: 'include' // Ensure cookies (session) are sent
+      });
       const data = await response.json();
       if (data.error) {
         alert(data.error);
@@ -260,7 +264,8 @@ document.addEventListener('DOMContentLoaded', function() {
       try {
         const response = await fetch('update_profile.php', {
           method: 'POST',
-          body: formData
+          body: formData,
+          credentials: 'include' // Ensure cookies (session) are sent
         });
         const data = await response.json();
         if (data.success) {

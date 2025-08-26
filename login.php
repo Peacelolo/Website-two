@@ -38,7 +38,7 @@ $stmt->fetch();
 
 // Verify password
 if (password_verify($password, $hashedPassword)) {
-    // You can set session/cookie here if needed
+    $_SESSION['user_id'] = $user_id;
     echo json_encode([
         "success" => "Welcome back, $first_name!",
         "user_id" => $user_id
