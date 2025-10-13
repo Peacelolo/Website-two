@@ -118,23 +118,45 @@
         <a href="track.html" class="hover:text-yellow-300"><i class="fas fa-map-marker-alt mr-2"></i> Track</a>
         <a href="health.html" class="hover:text-yellow-300"><i class="fas fa-heartbeat mr-2"></i> Health</a>
         <a href="weather.html" class="hover:text-yellow-300"><i class="fas fa-cloud-sun mr-2"></i> Weather</a>
-        <button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
-          <span><i class="fas fa-user mr-2"></i> Account</span>
-          <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
-        </button>
-        <div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
-          <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
-          <a href="notifications.html" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
-          <div class="flex items-center justify-between pr-2">
-            <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
-            <label class="inline-flex items-center cursor-pointer">
-              <input type="checkbox" value="" class="sr-only peer">
-              <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
-            </label>
-          </div>
-          <a href="password.html" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
-          <a href="#" class="text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</a>
-        </div>
+        <!-- Settings Group -->
+         <!-- Account Section -->
+<button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
+  <span><i class="fas fa-user mr-2"></i> Account</span>
+  <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
+</button>
+<div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
+  <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
+  <a href="notifications.html" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
+
+  <!-- Settings Subsection -->
+  <button onclick="toggleSettingsMenu()" class="text-left hover:text-yellow-300 flex items-center justify-between">
+    <span><i class="fas fa-cog mr-1"></i> Settings</span>
+    <i class="fas fa-chevron-down transform transition-transform duration-300" id="settingsArrow"></i>
+  </button>
+  <div id="settingsSubMenu" class="ml-4 mt-2 hidden flex flex-col space-y-2 text-sm">
+    <div class="flex items-center justify-between pr-2">
+      <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
+      <label class="inline-flex items-center cursor-pointer">
+        <input type="checkbox" value="" class="sr-only peer">
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
+      </label>
+    </div>
+    <a href="update_password.html" class="text-left hover:text-yellow-300 flex items-center">
+  <i class="fas fa-key mr-1"></i> Change Password
+</a>
+
+    <div class="flex items-center justify-between pr-2">
+      <span class="hover:text-yellow-300"><i class="fas fa-adjust mr-1"></i> Dark Mode</span>
+      <label class="inline-flex items-center cursor-pointer">
+        <input type="checkbox" value="" class="sr-only peer">
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
+      </label>
+    </div>
+    <button onclick="confirmDeleteAccount()" class="text-left text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</button>
+  </div>
+</div>
+
+
         <a href="index.html" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
       </nav>
     </aside>
@@ -317,12 +339,20 @@ document.addEventListener('DOMContentLoaded', function() {
         notifDropdown.classList.add("hidden");
       }
     });
+    
     function toggleAccountMenu() {
-      const submenu = document.getElementById("accountSubMenu");
-      const arrow = document.getElementById("accountArrow");
-      submenu.classList.toggle("hidden");
-      arrow.classList.toggle("rotate-90");
-    }
+    const accountSubMenu = document.getElementById("accountSubMenu");
+    const accountArrow = document.getElementById("accountArrow");
+    accountSubMenu.classList.toggle("hidden");
+    accountArrow.classList.toggle("rotate-90");
+  }
+
+  function toggleSettingsMenu() {
+    const settingsSubMenu = document.getElementById("settingsSubMenu");
+    const settingsArrow = document.getElementById("settingsArrow");
+    settingsSubMenu.classList.toggle("hidden");
+    settingsArrow.classList.toggle("rotate-180");
+  }
   </script>
 </body>
 </html>
