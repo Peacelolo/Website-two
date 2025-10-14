@@ -97,43 +97,46 @@
 
   <!-- Main layout with sidebar and content -->
   <div class="flex flex-1 pt-20 min-h-[calc(100vh-5rem)]">
-    <!-- Sidebar -->
-    <aside
-      class="w-64 bg-[#1F3F4C] text-white p-6 flex-shrink-0 flex flex-col"
-    >
+    <!-- Sidebar (standardized from profile.html) -->
+    <aside class="w-64 bg-[#1F3F4C] text-white p-6 flex-shrink-0 flex flex-col">
       <h4 class="text-xl font-bold mb-4">🐄 HerdTrace</h4>
       <nav class="flex flex-col space-y-3 flex-grow">
-        <a href="dashboard.html" class="hover:text-yellow-300">
-          <i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
-        <a href="registerlivestock.html" class="hover:text-yellow-300">
-          <i class="fas fa-plus-square mr-2"></i> Register Livestock</a>
-        <a href="track.html" class="hover:text-yellow-300">
-          <i class="fas fa-map-marker-alt mr-2"></i> Track</a>
-        <a href="health.html" class="hover:text-yellow-300">
-          <i class="fas fa-heartbeat mr-2"></i> Health</a>
-        <a href="weather.html" class="hover:text-yellow-300">
-          <i class="fas fa-cloud-sun mr-2"></i> Weather</a>        
-        <div>
-      <button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
-        <span><i class="fas fa-user mr-2"></i> Account</span>
-        <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
-      </button>
-      <div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
-        <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
-        <a href="notifications.html" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
-        <div class="flex items-center justify-between pr-2">
-          <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
-          <label class="inline-flex items-center cursor-pointer">
-            <input type="checkbox" value="" class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
-          </label>
+        <a href="dashboard.html" class="hover:text-yellow-300"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
+        <a href="registerlivestock.html" class="hover:text-yellow-300"><i class="fas fa-plus-square mr-2"></i> Register Livestock</a>
+        <a href="track.html" class="hover:text-yellow-300"><i class="fas fa-map-marker-alt mr-2"></i> Track</a>
+        <a href="health.html" class="hover:text-yellow-300"><i class="fas fa-heartbeat mr-2"></i> Health</a>
+        <a href="weather.html" class="hover:text-yellow-300"><i class="fas fa-cloud-sun mr-2"></i> Weather</a>
+        <button onclick="toggleAccountMenu()" class="w-full text-left hover:text-yellow-300 flex items-center justify-between">
+          <span><i class="fas fa-user mr-2"></i> Account</span>
+          <i class="fas fa-chevron-right transform transition-transform duration-300" id="accountArrow"></i>
+        </button>
+        <div id="accountSubMenu" class="mt-2 ml-4 hidden flex flex-col space-y-2 text-sm">
+          <a href="profile.html" class="hover:text-yellow-300"><i class="fas fa-edit mr-1"></i> Edit Profile</a>
+          <a href="notifications.html" class="hover:text-yellow-300"><i class="fas fa-bell mr-1"></i> Notifications</a>
+          <button onclick="toggleSettingsMenu()" class="text-left hover:text-yellow-300 flex items-center justify-between">
+            <span><i class="fas fa-cog mr-1"></i> Settings</span>
+            <i class="fas fa-chevron-down transform transition-transform duration-300" id="settingsArrow"></i>
+          </button>
+          <div id="settingsSubMenu" class="ml-4 mt-2 hidden flex flex-col space-y-2 text-sm">
+            <div class="flex items-center justify-between pr-2">
+              <span class="hover:text-yellow-300"><i class="fas fa-sms mr-1"></i> SMS Alerts</span>
+              <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
+              </label>
+            </div>
+            <a href="update_password.html" class="text-left hover:text-yellow-300 flex items-center"><i class="fas fa-key mr-1"></i> Change Password</a>
+            <div class="flex items-center justify-between pr-2">
+              <span class="hover:text-yellow-300"><i class="fas fa-adjust mr-1"></i> Dark Mode</span>
+              <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-yellow-400 transition-all"></div>
+              </label>
+            </div>
+            <button onclick="confirmDeleteAccount()" class="text-left text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</button>
+          </div>
         </div>
-        <a href="password.html" class="hover:text-yellow-300"><i class="fas fa-key mr-1"></i> Change Password</a>
-        <a href="#" class="text-red-400 hover:text-red-600"><i class="fas fa-trash-alt mr-1"></i> Delete Account</a>
-      </div>
-    </div>
-        <a href="index.html" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto">
-          <i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+        <a href="index.html" onclick="logout()" class="text-red-400 hover:text-red-600 mt-auto"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
       </nav>
     </aside>
 
@@ -223,6 +226,20 @@
     const arrow = document.getElementById("accountArrow");
     submenu.classList.toggle("hidden");
     arrow.classList.toggle("rotate-90");
+  }
+  
+  function toggleSettingsMenu() {
+    const submenu = document.getElementById('settingsSubMenu');
+    const arrow = document.getElementById('settingsArrow');
+    if (!submenu || !arrow) return;
+    submenu.classList.toggle('hidden');
+    arrow.classList.toggle('rotate-180');
+  }
+
+  function confirmDeleteAccount() {
+    if (confirm('Are you sure you want to delete your account?')) {
+      alert('Account deletion requested (server-side flow not implemented).');
+    }
   }
   </script>
 </body>

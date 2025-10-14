@@ -4,12 +4,16 @@ header('Content-Type: application/json');
 
 // Production: keep JSON responses clean (log errors server-side, do not print)
 error_reporting(E_ALL);
-ini_set('display_errors', 0);
+// Temporarily enable display_errors to help debug the 500. Remove or set to 0 in production.
+ini_set('display_errors', 1);
 
 // Database connection
-$mysqli = new mysqli("localhost", "root", "@Lolo123", "herdtrace_db");
-if ($mysqli->connect_error) {
-    echo json_encode(["error" => "Database connection failed: " . $mysqli->connect_error]);
+require_once __DIR__ . '/db_config.php';
+$mysqli = get_db_connection();
+if (!$mysqli) {
+    // get_db_connection already attempted to output a JSON error; ensure a proper 500 response
+    http_response_code(500);
+    echo json_encode(["error" => "Database connection failed. Check server logs or db_config.php."]);
     exit;
 }
 
@@ -23,9 +27,23 @@ if (!$email || !$password) {
 }
 
 // Find user by email
+// Prepare statement and check for errors
 $stmt = $mysqli->prepare("SELECT user_id, password, first_name FROM users WHERE email = ?");
+if (!$stmt) {
+    http_response_code(500);
+    echo json_encode(["error" => "Failed to prepare statement: " . $mysqli->error]);
+    $mysqli->close();
+    exit;
+}
 $stmt->bind_param("s", $email);
-$stmt->execute();
+$ok = $stmt->execute();
+if ($ok === false) {
+    http_response_code(500);
+    echo json_encode(["error" => "Failed to execute statement: " . $stmt->error]);
+    $stmt->close();
+    $mysqli->close();
+    exit;
+}
 $stmt->store_result();
 
 if ($stmt->num_rows === 0) {

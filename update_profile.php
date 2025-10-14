@@ -4,10 +4,12 @@ header('Content-Type: application/json');
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 
-$mysqli = new mysqli("localhost", "root", "@Lolo123", "herdtrace_db");
-if ($mysqli->connect_error) {
+$mysqli = null;
+require_once __DIR__ . '/db_config.php';
+$mysqli = get_db_connection();
+if (!$mysqli) {
     http_response_code(500);
-    echo json_encode(["error" => "Database connection failed."]);
+    // get_db_connection already echoed a JSON error
     exit;
 }
 

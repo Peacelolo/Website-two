@@ -6,9 +6,10 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database connection
-$mysqli = new mysqli("localhost", "root", "@Lolo123", "herdtrace_db");
-if ($mysqli->connect_error) {
-    echo json_encode(["error" => "Database connection failed: " . $mysqli->connect_error]);
+require_once __DIR__ . '/db_config.php';
+$mysqli = get_db_connection();
+if (!$mysqli) {
+    // get_db_connection already returned a JSON error message
     exit;
 }
 
